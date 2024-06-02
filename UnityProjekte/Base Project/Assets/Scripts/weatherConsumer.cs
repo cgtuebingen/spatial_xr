@@ -20,7 +20,7 @@ public class weatherConsumer : MonoBehaviour {
         if (weather == null) Debug.Log("Waiting for request");
         else {
             if(!printed){
-                
+                Debug.Log("Weather from ID:" + weather.weatherType);
                 Debug.Log("Temp:" + weather.temp);
                 Debug.Log(weather.description);
                 printed = true;
