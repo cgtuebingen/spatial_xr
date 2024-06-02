@@ -6,7 +6,8 @@ using UnityEngine;
 
 public class WeatherGetter : MonoBehaviour
 {
-    private string apiKey = "";
+    //API Key is hidden inside a static class
+    private string apiKey = APIKey.apiKey;
     private string baseURL = "https://api.openweathermap.org/data/2.5/weather?appid=";
    [SerializeField] private float lat = 42.2f;
    [SerializeField] private float lon = 12.0f;
