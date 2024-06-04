@@ -24,10 +24,30 @@ public class WeatherGetter : MonoBehaviour
     {
 
     }
-    IEnumerator GetRequest(float lat, float lon)
+    IEnumerator GetRequestCordinates(float lat, float lon)
 {
     //using (UnityWebRequest www = UnityWebRequest.Get(baseURL+"&appid=" + apiKey +"&lat=" + lat + "&lon=" + lon ))
     using (UnityWebRequest www = UnityWebRequest.Get(baseURL + apiKey + "&lat=" + lat + "&lon=" + lon ))
+    {
+        
+        yield return www.SendWebRequest();
+
+        if (www.result == UnityWebRequest.Result.Success)
+        {
+            result = www.downloadHandler.text;
+            Root res = JsonUtility.FromJson<Root>(result);
+        }
+        else
+        {
+            Debug.Log("Error: " + www.error);
+        }
+    } // The using block ensures www.Dispose() is called when this block is exited
+
+}
+    IEnumerator GetRequestString(string searchstring)
+{
+    //using (UnityWebRequest www = UnityWebRequest.Get(baseURL+"&appid=" + apiKey +"&lat=" + lat + "&lon=" + lon ))
+    using (UnityWebRequest www = UnityWebRequest.Get(baseURL + apiKey + "&q=" + searchstring))
     {
         
         yield return www.SendWebRequest();
@@ -58,8 +78,17 @@ public currentWeather getWeather(){
 }
 //this start a lookup for the weather at a new location, it invalidates the currently cached weather and makes no guarantee that something new will replace it (eg. the internet may be down)
 public void updateLocation(float lat, float lon){
+    //invalidate existing result, since the requested location has changed
     result = null;
     //start coroutine
-    Coroutine rout = StartCoroutine(GetRequest(lat,lon));
+    Coroutine rout = StartCoroutine(GetRequestCordinates(lat,lon));
+}
+//same as updateLocation, but with a string instead of coordinates, expects sanitized input
+public void updateLocationFromString(string city){
+    //invalidate existing result, since the requested location has changed
+    result = null;
+    //start coroutine
+    Coroutine rout = StartCoroutine(GetRequestString(city));
+
 }
 }
