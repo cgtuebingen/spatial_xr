@@ -1255,6 +1255,12 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 20226afb7fbdc8d4c8b11d3e93849035, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1642964925}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 20226afb7fbdc8d4c8b11d3e93849035, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1642964930}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 20226afb7fbdc8d4c8b11d3e93849035, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1642964929}
   m_SourcePrefab: {fileID: 100100000, guid: 20226afb7fbdc8d4c8b11d3e93849035, type: 3}
 --- !u!1 &1241364534 stripped
 GameObject:
@@ -2486,10 +2492,44 @@ SphereCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Radius: 0.009999997
   m_Center: {x: -0.0000000046566124, y: -0.000000004656612, z: 3.3087225e-23}
+--- !u!64 &1642964929
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1642964921}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4711208715938537054, guid: 20226afb7fbdc8d4c8b11d3e93849035, type: 3}
+--- !u!114 &1642964930
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1642964921}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7ae24de6a6b0bd478bbcc6b1c44b2bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1732410181 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5310702087570344806, guid: 58011bca9681c484080084eccc4cb150, type: 3}
