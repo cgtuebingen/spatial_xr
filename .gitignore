@@ -70,3 +70,7 @@ crashlytics-build.properties
 # Temporary auto-generated Android Assets
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
+
+# Hide the API Key
+/UnityProjekte/Base Project/Assets/Scripts/APIKey.cs
+/UnityProjekte/Base Project/Assets/Scripts/APIKey.cs.meta
