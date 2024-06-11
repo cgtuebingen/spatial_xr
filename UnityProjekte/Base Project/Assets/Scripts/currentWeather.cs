@@ -10,17 +10,11 @@ public class currentWeather {
     public double temp = 0.0f;
     public int id = 0;
     public WeatherType weatherType;
-    public string main;
-    public string description = "default";
-    public string icon = "###";
-
-    public currentWeather(double temp, int id, string main, string description, string icon) {
+    public string city;
+    public currentWeather(double temp, int id, string city) {
         //K to °C
         this.temp = temp - 273.15;
         this.id = id;
-        this.main = main;
-        this.description = description;
-        this.icon = icon;
         weatherType = parseWeatherFromID(id);
     }
 

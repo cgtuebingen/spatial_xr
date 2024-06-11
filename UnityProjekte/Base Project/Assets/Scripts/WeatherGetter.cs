@@ -71,7 +71,7 @@ public currentWeather getWeather(){
 
             Weather[] wea = res.weather.ToArray();
 
-            return new currentWeather(res.main.temp, wea[0].id, wea[0].main, wea[0].description, wea[0].icon);
+            return new currentWeather(res.main.temp, wea[0].id, res.name);
     }
     else return null;
 

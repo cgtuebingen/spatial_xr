@@ -22,7 +22,6 @@ public class weatherConsumer : MonoBehaviour {
             if(!printed){
                 Debug.Log("Weather from ID:" + weather.weatherType);
                 Debug.Log("Temp:" + weather.temp);
-                Debug.Log(weather.description);
                 printed = true;
             }
 

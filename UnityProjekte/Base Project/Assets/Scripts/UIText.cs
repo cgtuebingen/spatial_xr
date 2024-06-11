@@ -10,14 +10,12 @@ public class exampleUIText : MonoBehaviour
     public TMP_Text temperatureText;
     //this is where the temperature will be shown, place me wherever
     public TMP_Text friendlyNameText;
-    public string exampleCity = "Tübingen";
+    //name of the city
+    public TMP_Text cityText;
 
     // Start is called before the first frame update
     void Start()
     {
-        //get the weather from a city
-        weatherGetter.updateLocationFromString(exampleCity);
-        
     }
 
     // Update is called once per frame
@@ -27,11 +25,12 @@ public class exampleUIText : MonoBehaviour
         if(weather != null){
             temperatureText.text = weather.temp + " °C";
             friendlyNameText.text = weatherToFriendlyString(weather.weatherType);
-
+            cityText.text = weather.city;
         }
         else{
             temperatureText.text = "";
-            friendlyNameText.text = "Laden ...";
+            friendlyNameText.text = "";
+            cityText.text = "Laden ...";
         }
 
     }
