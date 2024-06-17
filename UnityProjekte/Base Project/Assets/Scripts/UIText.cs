@@ -21,7 +21,7 @@ public class exampleUIText : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        currentWeather weather = weatherGetter.getWeather();
+        WeatherResult weather = weatherGetter.getWeather();
         if(weather != null){
             temperatureText.text = weather.temp + " °C";
             friendlyNameText.text = weatherToFriendlyString(weather.weatherType);
@@ -35,15 +35,15 @@ public class exampleUIText : MonoBehaviour
 
     }
 
-    string weatherToFriendlyString(currentWeather.WeatherType weather){
+    string weatherToFriendlyString(WeatherResult.WeatherType weather){
         switch(weather){
-            case currentWeather.WeatherType.RAIN:
+            case WeatherResult.WeatherType.RAIN:
             return "Regen";
-            case currentWeather.WeatherType.SUN:
+            case WeatherResult.WeatherType.SUN:
             return "Sonne";
-            case currentWeather.WeatherType.SNOW:
+            case WeatherResult.WeatherType.SNOW:
             return "Schnee";
-            case currentWeather.WeatherType.CLOUDS:
+            case WeatherResult.WeatherType.CLOUDS:
             return "Wolken";
             //in case of new types of weather, add them here, eg. 
             default:

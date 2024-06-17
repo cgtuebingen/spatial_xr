@@ -27,7 +27,7 @@ using System;
     }
 [System.Serializable]
 
-    public class Root
+    public class OWMResult
     {
         public Coord coord ;
         public List<Weather> weather ;

@@ -2,15 +2,25 @@ using System.Collections;
 using UnityEngine.Networking;
 using System.Collections.Generic;
 using UnityEngine;
-//using Unity.VisualScripting;
+using System;
+using System.Globalization;
 
 public class WeatherGetter : MonoBehaviour
 {
     //API Key is hidden inside a static class
     private string apiKeyOWM = APIKey.apiKey;
     private string baseURLOWM = "https://api.openweathermap.org/data/2.5/weather?appid=";
+    private string baseURLOPENM = "https://api.open-meteo.com/v1/forecast";
     //will be null unless something has been requested
     private string result = null;
+    //the time when the weather should be requested
+    private DateTime requestTime;
+    //the API the current request should be sent to
+    private API api;
+    void start()
+    {
+        requestTime = DateTime.Now;
+    }
     IEnumerator GetRequest(string url)
     {
         //using (UnityWebRequest www = UnityWebRequest.Get(baseURL+"&appid=" + apiKey +"&lat=" + lat + "&lon=" + lon ))
@@ -31,15 +41,25 @@ public class WeatherGetter : MonoBehaviour
 
     }
     // this will return the current weather if something was requested. Otherwise it will continue return null, unless something arrives
-    public currentWeather getWeather()
+    public WeatherResult getWeather()
     {
         if (result != null)
         {
-            Root res = JsonUtility.FromJson<Root>(result);
+            Debug.Log(result);
+            switch (api){
+                case API.OPEN_WEATHER_MAP:
+                    OWMResult res = JsonUtility.FromJson<OWMResult>(result);
 
-            Weather[] wea = res.weather.ToArray();
+                    Weather[] wea = res.weather.ToArray();
 
-            return new currentWeather(res.main.temp, wea[0].id, res.name);
+                    return new OWMWeather(res.main.temp, wea[0].id, res.name);
+                case API.OPEN_METEO:
+                    OpenMeteoResult resb = JsonUtility.FromJson<OpenMeteoResult>(result);
+                    return new OpenMeteoWeather(resb.hourly.temperature_2m[requestTime.Hour],resb.hourly.weather_code[requestTime.Hour]);
+                default:
+                    return null;
+            }
+
         }
         else return null;
 
@@ -50,7 +70,20 @@ public class WeatherGetter : MonoBehaviour
         //invalidate existing result, since the requested location has changed
         result = null;
         //start coroutine
-        Coroutine rout = StartCoroutine(GetRequest(baseURLOWM + apiKeyOWM + "&lat=" + lat + "&lon=" + lon));
+        string requestString = "";
+        //We want the weather now (approx)
+        if (requestTime.Subtract(DateTime.Now).TotalHours <= 1)
+        {
+            requestString = baseURLOWM + apiKeyOWM + "&lat=" + lat + "&lon=" + lon;
+            api = API.OPEN_WEATHER_MAP;
+        }
+        else
+        {
+            requestString = baseURLOPENM + "?latitude=" + lat + "&longitude=" + lon + "&hourly=temperature_2m,weather_code&start_date=" + requestTime.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture) + "&end_date=" + requestTime.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture);
+            api = API.OPEN_METEO;
+        }
+        Debug.Log(requestString);
+        Coroutine rout = StartCoroutine(GetRequest(requestString));
     }
     //same as updateLocation, but with a string instead of coordinates, expects sanitized input
     public void updateLocationFromString(string city)
@@ -61,4 +94,13 @@ public class WeatherGetter : MonoBehaviour
         Coroutine rout = StartCoroutine(GetRequest(baseURLOWM + apiKeyOWM + "&q=" + city));
 
     }
+    public void setRequestTime(DateTime date)
+    {
+        requestTime = date;
+    }
+    enum API
+    {
+        OPEN_WEATHER_MAP, OPEN_METEO
+    }
+
 }
