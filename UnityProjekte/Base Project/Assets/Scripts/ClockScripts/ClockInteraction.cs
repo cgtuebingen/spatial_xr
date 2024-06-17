@@ -3,18 +3,20 @@ using TMPro;
 
 public class ClockInteraction : MonoBehaviour
 {
-    private ContactPoint firstContactPoint;
-    private ContactPoint lastContactPoint;
-    private TextMeshProUGUI textMeshProComponent;
-    private int guiTextValue;
+    private ContactPoint firstContactPoint; // Erster Kontaktpunkt bei der Kollision
+    private ContactPoint lastContactPoint;  // Letzter Kontaktpunkt bei der Kollision
+    private TextMeshProUGUI textMeshProComponent; // TextMeshPro-Komponente
+    private int guiTextValue; // Wert, der im TextMeshPro angezeigt wird
 
     private void OnCollisionEnter(Collision collision)
     {
+        // Speichere den ersten Kontaktpunkt bei der Kollision
         firstContactPoint = collision.contacts[0];
     }
 
     private void OnCollisionExit(Collision collision)
     {
+        // Speichere den letzten Kontaktpunkt bei der Kollision
         lastContactPoint = collision.contacts[collision.contacts.Length - 1];
     }
 
@@ -25,8 +27,7 @@ public class ClockInteraction : MonoBehaviour
 
     private void Update()
     {
-
-        // Versuche, die TextMeshPro-Komponente zu erhalten
+        // Initialisiere die TextMeshPro-Komponente
         textMeshProComponent = GetComponentInChildren<TextMeshProUGUI>();
 
         // Überprüfe, ob die Komponente gültig ist
@@ -36,7 +37,7 @@ public class ClockInteraction : MonoBehaviour
         }
         else
         {
-            // Konvertiere den initialen Textinhalt in eine Ganzzahl, falls möglich
+            // Versuche, den initialen Textinhalt in eine Ganzzahl zu konvertieren
             if (int.TryParse(textMeshProComponent.text, out guiTextValue))
             {
                 // Erfolgreich initialisiert
@@ -49,18 +50,44 @@ public class ClockInteraction : MonoBehaviour
                 guiTextValue = 0;
             }
         }
-        // Vergleiche die Kontakt-Punkte und aktualisiere den Wert
+
+        // Berechne den Unterschied der y-Komponente der Normalenvektoren der Kontaktpunkte
+        float contactDifference = Mathf.Abs(firstContactPoint.normal.y - lastContactPoint.normal.y);
+
+        // Vergleiche die y-Komponente der Normalenvektoren und aktualisiere den Wert entsprechend
         if (firstContactPoint.normal.y < lastContactPoint.normal.y)
         {
-            guiTextValue++;
+            if (contactDifference <= 0.3f)
+            {
+                guiTextValue++;
+            }
+            else if (contactDifference <= 0.6f)
+            {
+                guiTextValue += 2;
+            }
+            else
+            {
+                guiTextValue += 5;
+            }
         }
         else if (firstContactPoint.normal.y > lastContactPoint.normal.y)
         {
-            guiTextValue--;
+            if (contactDifference <= 0.3f)
+            {
+                guiTextValue--;
+            }
+            else if (contactDifference <= 0.6f)
+            {
+                guiTextValue -= 2;
+            }
+            else
+            {
+                guiTextValue -= 5;
+            }
         }
 
-        // Update der GUI-Text-Komponente mit dem neuen Wert
+        // Aktualisiere den Text der TextMeshPro-Komponente mit dem neuen Wert
         textMeshProComponent.text = guiTextValue.ToString();
-        Debug.Log(" value parsed: " + guiTextValue);
+        Debug.Log("Updated value: " + guiTextValue);
     }
 }

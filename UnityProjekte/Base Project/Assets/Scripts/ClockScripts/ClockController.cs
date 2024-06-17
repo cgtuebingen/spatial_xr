@@ -18,7 +18,7 @@ public class ClockController : MonoBehaviour
        void Start()
     {
         UpdateClock();
-        InvokeRepeating("UpdateClock", 1f, 1f);
+        InvokeRepeating("UpdateClock", 1f, 60f);
     
     }
 
@@ -26,7 +26,7 @@ public class ClockController : MonoBehaviour
     {
         DateTime now = DateTime.Now;
 
-       yearTextFirst.text = (now.Year / 10 % 10).ToString();
+        yearTextFirst.text = (now.Year / 10 % 10).ToString();
         yearTextSecond.text = ((now.Year % 1000) % 10).ToString();
         monthTextFirst.text = (now.Month / 10).ToString();
         monthTextSecond.text = (now.Month % 10).ToString();
