@@ -15,6 +15,9 @@ public class ClockInteraction : MonoBehaviour
 
     public ClockController clockController; // Referenz auf ClockController
 
+    public float targetHeightUP = 0.1f;
+    public float targetHeightDown = -0.1f;
+
     private void OnCollisionEnter(Collision collision)
     {
         // Speichere den ersten Kontaktpunkt bei der Kollision
@@ -65,6 +68,14 @@ public class ClockInteraction : MonoBehaviour
                 {
                     guiTextValue += 5;
                 }
+                float highValue = Mathf.MoveTowards(textMeshProComponent.transform.position.y, targetHeightUP, 0.1f * Time.deltaTime);
+                textMeshProComponent.transform.position = new Vector3(textMeshProComponent.transform.position.x, highValue, textMeshProComponent.transform.position.z);
+                 // Aktualisiere den Text der TextMeshPro-Komponente mit dem neuen Wert
+                textMeshProComponent.text = guiTextValue.ToString();
+                clockController.isTimeChangedManually = true;
+                float DefaultHighValue = Mathf.MoveTowards(-0.1f, 0, 0.1f * Time.deltaTime);
+                textMeshProComponent.transform.position = new Vector3(textMeshProComponent.transform.position.x, DefaultHighValue, textMeshProComponent.transform.position.z);
+
             }
             else if (firstContactPoint.normal.y > lastContactPoint.normal.y)
             {
@@ -80,12 +91,19 @@ public class ClockInteraction : MonoBehaviour
                 {
                     guiTextValue -= 5;
                 }
+                float highValue = Mathf.MoveTowards(textMeshProComponent.transform.position.y, targetHeightDown, 0.1f * Time.deltaTime);
+                textMeshProComponent.transform.position = new Vector3(textMeshProComponent.transform.position.x, highValue, textMeshProComponent.transform.position.z);
+                 // Aktualisiere den Text der TextMeshPro-Komponente mit dem neuen Wert
+                textMeshProComponent.text = guiTextValue.ToString();
+                clockController.isTimeChangedManually = true;      
+                float DefaultHighValue = Mathf.MoveTowards(0.1f, 0, 0.1f * Time.deltaTime);
+                textMeshProComponent.transform.position = new Vector3(textMeshProComponent.transform.position.x, DefaultHighValue, textMeshProComponent.transform.position.z);
+
+
+                
             }
 
-            // Aktualisiere den Text der TextMeshPro-Komponente mit dem neuen Wert
-            textMeshProComponent.text = guiTextValue.ToString();
-            clockController.isTimeChangedManually = true;
-
+           
             // Zurücksetzen der ContactPoints nach der Verarbeitung
             firstContactPoint = new ContactPoint();
             lastContactPoint = new ContactPoint();
