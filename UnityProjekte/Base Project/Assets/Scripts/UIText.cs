@@ -21,11 +21,18 @@ public class exampleUIText : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        WeatherResult weather = weatherGetter.getWeather();
-        if(weather != null){
-            temperatureText.text = weather.temp + " °C";
-            friendlyNameText.text = weatherToFriendlyString(weather.weatherType);
-            cityText.text = weather.city;
+        WeatherGetter.Result<WeatherResult>? weather = weatherGetter.getWeather();
+        if (weather is WeatherGetter.Result<WeatherResult> weatherRes) {
+            if(!weatherRes.isOk){
+            temperatureText.text = "";
+            friendlyNameText.text = "";
+            cityText.text = "Fehler ..."; 
+            }
+            else{
+            temperatureText.text = weatherRes.value.temp + " °C";
+            friendlyNameText.text = weatherToFriendlyString(weatherRes.value.weatherType);
+            cityText.text = weatherRes.value.city;
+            }
         }
         else{
             temperatureText.text = "";

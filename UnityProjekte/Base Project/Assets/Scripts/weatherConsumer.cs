@@ -15,30 +15,33 @@ public class weatherConsumer : MonoBehaviour {
     void Start() {
         //set random example location
 
-        if(timeString.Equals("") && false){
+        if(timeString.Equals("")){
             time = DateTime.Now;
         }
         else{
             time = DateTime.ParseExact(timeString,"yyyy-MM-dd",CultureInfo.InvariantCulture);
         }
         weatherGetter.setRequestTime(time);
-        weatherGetter.updateLocation(lat,lon);
+        //weatherGetter.updateLocation(lat,lon);
+        weatherGetter.updateLocationFromString("Tübingen");
     }
 
     // Update is called once per frame
     void Update() {
-        WeatherResult weather = weatherGetter.getWeather();
-        if (weather == null) Debug.Log("Waiting for request");
-        else {
-            if(!printed){
-                Debug.Log("Weather from ID:" + weather.weatherType);
-                Debug.Log("Temp:" + weather.temp);
-                Debug.Log(weather.city);
+        WeatherGetter.Result<WeatherResult>? weather = weatherGetter.getWeather();
+        if (weather is WeatherGetter.Result<WeatherResult> weatherRes ) {
+            if(!weatherRes.isOk) Debug.Log("Error");
+            else if(!printed){
+                Debug.Log("Weather from ID:" + weatherRes.value.weatherType);
+                Debug.Log("Temp:" + weatherRes.value.temp);
+                Debug.Log(weatherRes.value.city);
                 printed = true;
             }
-
-
         }
+        else Debug.Log("Waiting for request");
+
+
+        
     }
 
 }

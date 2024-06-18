@@ -12,7 +12,7 @@ public class WeatherGetter : MonoBehaviour
     private string baseURLOWM = "https://api.openweathermap.org/data/2.5/weather?appid=";
     private string baseURLOPENM = "https://api.open-meteo.com/v1/forecast";
     //will be null unless something has been requested
-    private string result = null;
+    private Result<string>? result = null;
     //the time when the weather should be requested
     private DateTime requestTime;
     //the API the current request should be sent to
@@ -26,42 +26,43 @@ public class WeatherGetter : MonoBehaviour
         //using (UnityWebRequest www = UnityWebRequest.Get(baseURL+"&appid=" + apiKey +"&lat=" + lat + "&lon=" + lon ))
         using (UnityWebRequest www = UnityWebRequest.Get(url))
         {
-
             yield return www.SendWebRequest();
 
             if (www.result == UnityWebRequest.Result.Success)
             {
-                result = www.downloadHandler.text;
+                result = Result<string>.Ok(www.downloadHandler.text);
             }
             else
             {
                 Debug.Log("Error: " + www.error);
+                result = Result<string>.Error(www.error);
             }
         } // The using block ensures www.Dispose() is called when this block is exited
 
     }
     // this will return the current weather if something was requested. Otherwise it will continue return null, unless something arrives
-    public WeatherResult getWeather()
+    public Result<WeatherResult>? getWeather()
     {
-        if (result != null)
-        {
-            Debug.Log(result);
-            switch (api){
-                case API.OPEN_WEATHER_MAP:
-                    OWMResult res = JsonUtility.FromJson<OWMResult>(result);
+        if (result == null) return null;
+        Debug.Log(result.Value.value);
+        if (!result.Value.isOk) return Result<WeatherResult>.Error(null);
+    
 
-                    Weather[] wea = res.weather.ToArray();
+        switch (api){
+            case API.OPEN_WEATHER_MAP:
+                OWMResult res = JsonUtility.FromJson<OWMResult>(result?.value);
 
-                    return new OWMWeather(res.main.temp, wea[0].id, res.name);
-                case API.OPEN_METEO:
-                    OpenMeteoResult resb = JsonUtility.FromJson<OpenMeteoResult>(result);
-                    return new OpenMeteoWeather(resb.hourly.temperature_2m[requestTime.Hour],resb.hourly.weather_code[requestTime.Hour]);
-                default:
-                    return null;
+                Weather[] wea = res.weather.ToArray();
+
+                return Result<WeatherResult>.Ok(new OWMWeather(res.main.temp, wea[0].id, res.name));
+            case API.OPEN_METEO:
+                OpenMeteoResult resb = JsonUtility.FromJson<OpenMeteoResult>(result?.value);
+                return Result<WeatherResult>.Ok( new OpenMeteoWeather(resb.hourly.temperature_2m[requestTime.Hour],resb.hourly.weather_code[requestTime.Hour]));
+            default:
+                return null;
             }
 
-        }
-        else return null;
+        
 
     }
     //this start a lookup for the weather at a new location, it invalidates the currently cached weather and makes no guarantee that something new will replace it (eg. the internet may be down)
@@ -91,7 +92,22 @@ public class WeatherGetter : MonoBehaviour
         //invalidate existing result, since the requested location has changed
         result = null;
         //start coroutine
-        Coroutine rout = StartCoroutine(GetRequest(baseURLOWM + apiKeyOWM + "&q=" + city));
+        string requestString = "";
+        //We want the weather now (approx)
+        if (requestTime.Subtract(DateTime.Now).TotalHours <= 1)
+        {
+            requestString = baseURLOWM + apiKeyOWM + "&q=" + city;
+            api = API.OPEN_WEATHER_MAP;
+        }
+        else
+        {
+            //todo handle this case
+            requestString = "";
+            api = API.OPEN_METEO;
+        }
+        Debug.Log(requestString);
+        Coroutine rout = StartCoroutine(GetRequest(requestString));
+        //start coroutine
 
     }
     public void setRequestTime(DateTime date)
@@ -101,6 +117,19 @@ public class WeatherGetter : MonoBehaviour
     enum API
     {
         OPEN_WEATHER_MAP, OPEN_METEO
+    }
+    public struct Result<T>{
+        public static Result<T> Error(T value) => new Result<T>(value,false);
+        public static Result<T> Ok(T value) => new Result<T>(value,true);
+        public bool isOk;
+        public T value{get;}
+        Result(T value, bool isOk)
+        {
+           this.value = value;
+            this.isOk = isOk;
+        }
+
+
     }
 
 }
