@@ -1,28 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
-//using Unity.VisualScripting;
 using UnityEngine;
 
-public class currentWeather {
-
-    //Default Data
-    //Temperature in °C
-    public double temp = 0.0f;
-    public int id = 0;
-    public WeatherType weatherType;
-    public string city;
-    public currentWeather(double temp, int id, string city) {
-        //K to °C
-        this.temp = temp - 273.15;
-        this.id = id;
-        weatherType = parseWeatherFromID(id);
-    }
-
-    public enum WeatherType{
-        SUN,RAIN,SNOW,CLOUDS
-    }
-    //Based on: https://openweathermap.org/weather-conditions
-    public WeatherType parseWeatherFromID(int id){
+public class OWMWeather : WeatherResult
+{
+    public OWMWeather(double temp, int id, string city):base(temp - 273.15,parseWeatherFromID(id),city) {
+    }    
+   //Based on: https://openweathermap.org/weather-conditions
+    public static WeatherResult.WeatherType parseWeatherFromID(int id){
         int firstDigit = id/100;
         switch (firstDigit){
             //Thunderstorm
@@ -48,6 +33,4 @@ public class currentWeather {
             return WeatherType.SUN;
         }
     }
-
 }
-    
