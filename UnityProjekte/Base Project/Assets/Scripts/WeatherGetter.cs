@@ -93,8 +93,8 @@ public class WeatherGetter : MonoBehaviour
         result = null;
         //start coroutine
         string requestString = "";
-        //We want the weather now (approx)
-        if (requestTime.Subtract(DateTime.Now).TotalHours <= 1)
+        //We want the weather now (approx), disable OpenMeteo for now, it does not support query by string
+        if (requestTime.Subtract(DateTime.Now).TotalHours <= 1 || true)
         {
             requestString = baseURLOWM + apiKeyOWM + "&q=" + city;
             api = API.OPEN_WEATHER_MAP;
