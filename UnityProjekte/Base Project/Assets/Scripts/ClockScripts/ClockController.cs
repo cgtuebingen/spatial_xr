@@ -97,7 +97,7 @@ void UpdateClock()
 
         if (int.Parse(monthTextSecond.text) < 0)
             {
-                monthSecond.text = "0";
+                monthTextSecond.text = "0";
             }
 
         // Ensure day values are valid (1-31, adjusted for month and leap year)
