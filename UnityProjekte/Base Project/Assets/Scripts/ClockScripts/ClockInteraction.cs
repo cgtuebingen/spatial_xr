@@ -36,6 +36,7 @@ public class ClockInteraction : MonoBehaviour
     }
     private void OnTriggerExit(Collider other){
         lastContactPoint = other.transform.position;
+        UpdateGUITextValue(firstContactPoint, lastContactPoint, ref guiTextValue, textMeshProComponent, clockController);
     }
 
     void Update()
@@ -51,7 +52,7 @@ public class ClockInteraction : MonoBehaviour
             guiTextValue = 0; // Setze den Default-Wert auf 0
         }
 
-        UpdateGUITextValue(firstContactPoint, lastContactPoint, ref guiTextValue, textMeshProComponent, clockController);
+        
     }
 
     void UpdateGUITextValue(Vector3 firstContactPoint, Vector3 lastContactPoint, ref int guiTextValue, TextMeshProUGUI textMeshProComponent, ClockController clockController)
