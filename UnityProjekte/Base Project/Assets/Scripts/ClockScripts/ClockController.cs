@@ -63,7 +63,17 @@ void UpdateClock()
     {
         // Keep year values between 0 and 9
         yearTextFirst.text = (int.Parse(yearTextFirst.text) % 10).ToString();
+         if (int.Parse(yearTextFirst.text) < 0)
+            {
+                yearTextFirst.text = "0";
+            }
+        
         yearTextSecond.text = (int.Parse(yearTextSecond.text) % 10).ToString();
+
+        if (int.Parse(yearTextSecond.text) < 0)
+            {
+                yearTextSecond.text = "0";
+            }
 
         // Ensure month values are valid (1-12)
         monthTextFirst.text = (int.Parse(monthTextFirst.text) % 2).ToString();
@@ -74,11 +84,21 @@ void UpdateClock()
         else
         {
             monthTextSecond.text = (int.Parse(monthTextSecond.text) % 10).ToString();
-            if (int.Parse(monthTextSecond.text) == 0)
+            if (int.Parse(monthTextSecond.text) == 0 || int.Parse(monthTextSecond.text) < 0)
             {
                 monthTextSecond.text = "1";
             }
         }
+
+        if (int.Parse(monthTextFirst.text) < 0)
+            {
+                monthTextSecond.text = "1";
+            }
+
+        if (int.Parse(monthTextSecond.text) < 0)
+            {
+                monthSecond.text = "0";
+            }
 
         // Ensure day values are valid (1-31, adjusted for month and leap year)
         dayTextFirst.text = (int.Parse(dayTextFirst.text) % 4).ToString();
@@ -105,6 +125,16 @@ void UpdateClock()
             }
         }
 
+        if (int.Parse(dayTextFirst.text) < 0)
+            {
+                dayTextFirst.text = "0";
+            }
+
+        if (int.Parse(dayTextSecond.text) < 0)
+            {
+                dayTextSecond.text = "1";
+            }
+
         // Ensure hour values are valid (0-23)
         hourTextFirst.text = (int.Parse(hourTextFirst.text) % 3).ToString();
         if (int.Parse(hourTextFirst.text) == 2)
@@ -116,8 +146,30 @@ void UpdateClock()
             hourTextSecond.text = (int.Parse(hourTextSecond.text) % 10).ToString();
         }
 
+        if (int.Parse(hourTextFirst.text) < 0)
+            {
+                hourTextFirst.text = "0";
+            }
+
+        if (int.Parse(hourTextSecond.text) < 0)
+            {
+                hourTextSecond.text = "0";
+            }
         // Ensure minute values are valid (0-59)
         minuteTextFirst.text = (int.Parse(minuteTextFirst.text) % 6).ToString();
+        
+        if (int.Parse(minuteTextFirst.text) < 0)
+            {
+                minuteTextFirst.text = "0";
+            }
+
         minuteTextSecond.text = (int.Parse(minuteTextSecond.text) % 10).ToString();
+
+        if (int.Parse(minuteTextSecond.text) < 0)
+            {
+                minuteTextSecond.text = "0";
+            }
+
+
     }
 }
