@@ -17,13 +17,13 @@ public class Search : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-    }
-    void OnCollisionEnter(Collision collision){
-        GlobalNonNativeKeyboard.instance.ShowKeyboard();
+
     }
     public void submit(){
         weatherGetter.updateLocationFromString(GlobalNonNativeKeyboard.instance.keyboard.text);
         Debug.Log(GlobalNonNativeKeyboard.instance.keyboard.text);
+    }
+    void OnTriggerEnter(){
+        GlobalNonNativeKeyboard.instance.ShowKeyboard();
     }
 }
