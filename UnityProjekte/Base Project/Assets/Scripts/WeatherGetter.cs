@@ -40,6 +40,28 @@ public class WeatherGetter : MonoBehaviour
         } // The using block ensures www.Dispose() is called when this block is exited
 
     }
+    //get request to openmeteo via a city name
+    IEnumerator GetRequestToOMByCity(string city)
+    {
+        string url =  baseURLOWM + apiKeyOWM + "&q=" + city;
+        //using (UnityWebRequest www = UnityWebRequest.Get(baseURL+"&appid=" + apiKey +"&lat=" + lat + "&lon=" + lon ))
+        using (UnityWebRequest www = UnityWebRequest.Get(url))
+        {
+            yield return www.SendWebRequest();
+
+            if (www.result == UnityWebRequest.Result.Success)
+            {
+                OWMResult res = JsonUtility.FromJson<OWMResult>(www.downloadHandler.text);
+                updateLocation(res.coord.lat, res.coord.lon);
+            }
+            else
+            {
+                Debug.Log("Error: " + www.error);
+                result = Result<string>.Error(www.error);
+            }
+        } // The using block ensures www.Dispose() is called when this block is exited
+
+    }
     // this will return the current weather if something was requested. Otherwise it will continue return null, unless something arrives
     public Result<WeatherResult>? getWeather()
     {
@@ -94,19 +116,19 @@ public class WeatherGetter : MonoBehaviour
         //start coroutine
         string requestString = "";
         //We want the weather now (approx), disable OpenMeteo for now, it does not support query by string
-        if (requestTime.Subtract(DateTime.Now).TotalHours <= 1 || true)
+        if (requestTime.Subtract(DateTime.Now).TotalHours <= 1)
         {
             requestString = baseURLOWM + apiKeyOWM + "&q=" + city;
             api = API.OPEN_WEATHER_MAP;
+            Coroutine rout = StartCoroutine(GetRequest(requestString));
+            Debug.Log(requestString);
         }
         else
         {
-            //todo handle this case
-            requestString = "";
-            api = API.OPEN_METEO;
+            Coroutine rout = StartCoroutine(GetRequestToOMByCity(city));
         }
-        Debug.Log(requestString);
-        Coroutine rout = StartCoroutine(GetRequest(requestString));
+
+
         //start coroutine
 
     }
