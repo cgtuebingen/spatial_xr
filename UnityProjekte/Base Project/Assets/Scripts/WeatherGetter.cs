@@ -17,6 +17,9 @@ public class WeatherGetter : MonoBehaviour
     private DateTime requestTime;
     //the API the current request should be sent to
     private API api;
+    //save the coordinates for update
+    private Coords coords = null;
+    private string city = "";
     void start()
     {
         requestTime = DateTime.Now;
@@ -52,7 +55,32 @@ public class WeatherGetter : MonoBehaviour
             if (www.result == UnityWebRequest.Result.Success)
             {
                 OWMResult res = JsonUtility.FromJson<OWMResult>(www.downloadHandler.text);
+                this.coords = new Coords(res.coord.lat,res.coord.lon);
+                this.city = res.name;
                 updateLocation(res.coord.lat, res.coord.lon);
+            }
+            else
+            {
+                Debug.Log("Error: " + www.error);
+                result = Result<string>.Error(www.error);
+            }
+        } // The using block ensures www.Dispose() is called when this block is exited
+
+    }
+    IEnumerator GetRequestToOMBCoords(float lat, float lon)
+    {
+        string url = baseURLOWM + apiKeyOWM + "&lat=" + lat + "&lon=" + lon;;
+        //using (UnityWebRequest www = UnityWebRequest.Get(baseURL+"&appid=" + apiKey +"&lat=" + lat + "&lon=" + lon ))
+        using (UnityWebRequest www = UnityWebRequest.Get(url))
+        {
+            yield return www.SendWebRequest();
+
+            if (www.result == UnityWebRequest.Result.Success)
+            {
+                OWMResult res = JsonUtility.FromJson<OWMResult>(www.downloadHandler.text);
+                this.city = res.name;
+                url = baseURLOPENM + "?latitude=" + lat + "&longitude=" + lon + "&hourly=temperature_2m,weather_code&start_date=" + requestTime.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture) + "&end_date=" + requestTime.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture);
+                StartCoroutine(GetRequest(url));
             }
             else
             {
@@ -79,7 +107,7 @@ public class WeatherGetter : MonoBehaviour
                 return Result<WeatherResult>.Ok(new OWMWeather(res.main.temp, wea[0].id, res.name));
             case API.OPEN_METEO:
                 OpenMeteoResult resb = JsonUtility.FromJson<OpenMeteoResult>(result?.value);
-                return Result<WeatherResult>.Ok( new OpenMeteoWeather(resb.hourly.temperature_2m[requestTime.Hour],resb.hourly.weather_code[requestTime.Hour]));
+                return Result<WeatherResult>.Ok( new OpenMeteoWeather(resb.hourly.temperature_2m[requestTime.Hour],resb.hourly.weather_code[requestTime.Hour],city));
             default:
                 return null;
             }
@@ -94,19 +122,21 @@ public class WeatherGetter : MonoBehaviour
         result = null;
         //start coroutine
         string requestString = "";
+        this.coords = new Coords(lat,lon);
         //We want the weather now (approx)
         if (requestTime.Subtract(DateTime.Now).TotalHours <= 1)
         {
             requestString = baseURLOWM + apiKeyOWM + "&lat=" + lat + "&lon=" + lon;
             api = API.OPEN_WEATHER_MAP;
+            Coroutine rout = StartCoroutine(GetRequest(requestString));
         }
         else
         {
-            requestString = baseURLOPENM + "?latitude=" + lat + "&longitude=" + lon + "&hourly=temperature_2m,weather_code&start_date=" + requestTime.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture) + "&end_date=" + requestTime.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture);
+            //requestString = baseURLOPENM + "?latitude=" + lat + "&longitude=" + lon + "&hourly=temperature_2m,weather_code&start_date=" + requestTime.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture) + "&end_date=" + requestTime.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture);
             api = API.OPEN_METEO;
+            StartCoroutine(GetRequestToOMBCoords(lat,lon));
         }
         Debug.Log(requestString);
-        Coroutine rout = StartCoroutine(GetRequest(requestString));
     }
     //same as updateLocation, but with a string instead of coordinates, expects sanitized input
     public void updateLocationFromString(string city)
@@ -129,12 +159,15 @@ public class WeatherGetter : MonoBehaviour
         }
 
 
-        //start coroutine
 
+    }
+    public void update(){
+        if(coords != null) updateLocation(coords.lat,coords.lon);
     }
     public void setRequestTime(DateTime date)
     {
         requestTime = date;
+        update();
     }
     enum API
     {
@@ -152,6 +185,14 @@ public class WeatherGetter : MonoBehaviour
         }
 
 
+    }
+    class Coords{
+        public float lat;
+        public float lon;
+        public Coords(float lat, float lon){
+            this.lat=lat;
+            this.lon=lon;
+        }
     }
 
 }
