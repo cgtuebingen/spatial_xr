@@ -29,7 +29,7 @@ public class exampleUIText : MonoBehaviour
             cityText.text = "Fehler ..."; 
             }
             else{
-            temperatureText.text = weatherRes.value.temp + " °C";
+            temperatureText.text = weatherRes.value.temp.ToString("0.0") + " °C";
             friendlyNameText.text = weatherToFriendlyString(weatherRes.value.weatherType);
             cityText.text = weatherRes.value.city;
             }
