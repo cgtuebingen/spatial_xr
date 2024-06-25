@@ -1935,7 +1935,6 @@ GameObject:
   - component: {fileID: 1126905495}
   - component: {fileID: 1126905494}
   - component: {fileID: 1126905493}
-  - component: {fileID: 1126905492}
   - component: {fileID: 1126905491}
   m_Layer: 0
   m_Name: Sphere
@@ -1957,27 +1956,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   layer: clouds_new
---- !u!135 &1126905492
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1126905490}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
+  zoomLevel: 1
 --- !u!23 &1126905493
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -2037,7 +2016,7 @@ Transform:
   m_GameObject: {fileID: 1126905490}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.02, y: 1.2766199, z: 0.409}
+  m_LocalPosition: {x: 0.091, y: 1.376, z: 0.573}
   m_LocalScale: {x: 0.41664, y: 0.41664, z: 0.41664}
   m_ConstrainProportionsScale: 0
   m_Children: []
