@@ -20,9 +20,10 @@ public class WeatherGetter : MonoBehaviour
     //save the coordinates for update
     private Coords coords = null;
     private string city = "";
-    void start()
+    void Start()
     {
         requestTime = DateTime.Now;
+        requestTime = DateTime.Parse("2024-06-28",  null, System.Globalization.DateTimeStyles.RoundtripKind);
     }
     IEnumerator GetRequest(string url)
     {
@@ -94,7 +95,7 @@ public class WeatherGetter : MonoBehaviour
     public Result<WeatherResult>? getWeather()
     {
         if (result == null) return null;
-        Debug.Log(result.Value.value);
+        //Debug.Log(result.Value.value);
         if (!result.Value.isOk) return Result<WeatherResult>.Error(null);
     
 
@@ -132,11 +133,12 @@ public class WeatherGetter : MonoBehaviour
         }
         else
         {
+            Debug.Log("forecast");
             //requestString = baseURLOPENM + "?latitude=" + lat + "&longitude=" + lon + "&hourly=temperature_2m,weather_code&start_date=" + requestTime.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture) + "&end_date=" + requestTime.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture);
             api = API.OPEN_METEO;
             StartCoroutine(GetRequestToOMBCoords(lat,lon));
         }
-        Debug.Log(requestString);
+        //Debug.Log(requestString);
     }
     //same as updateLocation, but with a string instead of coordinates, expects sanitized input
     public void updateLocationFromString(string city)
@@ -151,10 +153,11 @@ public class WeatherGetter : MonoBehaviour
             requestString = baseURLOWM + apiKeyOWM + "&q=" + city;
             api = API.OPEN_WEATHER_MAP;
             Coroutine rout = StartCoroutine(GetRequest(requestString));
-            Debug.Log(requestString);
+            //Debug.Log(requestString);
         }
         else
         {
+            Debug.Log("forecast");
             Coroutine rout = StartCoroutine(GetRequestToOMByCity(city));
         }
 
