@@ -13,6 +13,8 @@ public class exampleUIText : MonoBehaviour
     //name of the city
     public TMP_Text cityText;
     //visualization objects
+    //Error
+    public GameObject errorVisualization;
     //SUN
     public GameObject sunVisualization;
     //RAIN
@@ -38,6 +40,7 @@ public class exampleUIText : MonoBehaviour
                 temperatureText.text = "";
                 friendlyNameText.text = "";
                 cityText.text = "Fehler ..."; 
+                activateVisualizationObject(null);
             }
             else{
                 activateVisualizationObject(weatherRes.value.weatherType);
@@ -73,15 +76,21 @@ public class exampleUIText : MonoBehaviour
 
     void disableAllVisualizations()
     {
+        errorVisualization.SetActive(false);
         sunVisualization.SetActive(false);
         snowVisualization.SetActive(false);
         cloudsVisualization.SetActive(false);
         rainVisualization.SetActive(false);
     }
 
-    void activateVisualizationObject(WeatherResult.WeatherType weather)
+    void activateVisualizationObject(WeatherResult.WeatherType? weather)
     {
         disableAllVisualizations();
+        if (weather is null)
+        {
+            errorVisualization.SetActive(true);
+            return;
+        }
         switch (weather)
         {
             case WeatherResult.WeatherType.RAIN:
