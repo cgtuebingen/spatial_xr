@@ -5,7 +5,7 @@ using UnityEngine;
 public class OpenMeteoWeather : WeatherResult
 {
 
-    public OpenMeteoWeather(double temp, int id, string city):base(temp,parseWeatherFromID(id),city) {
+    public OpenMeteoWeather(double temp, int id):base(temp,parseWeatherFromID(id),"") {
     }    
    //Based on: https://openweathermap.org/weather-conditions
     public static WeatherResult.WeatherType parseWeatherFromID(int id){

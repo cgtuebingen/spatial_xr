@@ -12,8 +12,8 @@ using System;
 
     public class Coord
     {
-        public float lon ;
-        public float lat ;
+        public int lon ;
+        public double lat ;
     }
 [System.Serializable]
     public class Main
