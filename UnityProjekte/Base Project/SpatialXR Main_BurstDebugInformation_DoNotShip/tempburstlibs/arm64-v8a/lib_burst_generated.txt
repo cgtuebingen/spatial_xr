@@ -21,6 +21,7 @@ Library: C:\Users\Gamer\Documents\SpatialXR\spatial_xr\UnityProjekte\Base Projec
 --assembly-defines=Unity.RenderPipelines.Core.Runtime;
 --assembly-defines=Unity.RenderPipelines.Universal.Runtime;
 --assembly-defines=Unity.TextMeshPro;
+--assembly-defines=Unity.VisualEffectGraph.Runtime;
 --assembly-defines=Unity.XR.ARFoundation;
 --assembly-defines=Unity.XR.ARFoundation.InternalUtils;
 --assembly-defines=Unity.XR.ARSubsystems;
@@ -146,6 +147,7 @@ Library: C:\Users\Gamer\Documents\SpatialXR\spatial_xr\UnityProjekte\Base Projec
 --assembly-defines=Unity.RenderPipelines.Core.Runtime;
 --assembly-defines=Unity.RenderPipelines.Universal.Runtime;
 --assembly-defines=Unity.TextMeshPro;
+--assembly-defines=Unity.VisualEffectGraph.Runtime;
 --assembly-defines=Unity.XR.ARFoundation;
 --assembly-defines=Unity.XR.ARFoundation.InternalUtils;
 --assembly-defines=Unity.XR.ARSubsystems;
