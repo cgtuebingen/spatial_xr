@@ -44,7 +44,7 @@ public class WeatherGetter : MonoBehaviour
     public Result<WeatherResult>? getWeather()
     {
         if (result == null) return null;
-        Debug.Log(result.Value.value);
+        //Debug.Log(result.Value.value);
         if (!result.Value.isOk) return Result<WeatherResult>.Error(null);
     
 

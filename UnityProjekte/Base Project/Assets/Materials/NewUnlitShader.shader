@@ -24,6 +24,7 @@ Shader "Unlit/NewUnlitShader"
             {
                 float4 vertex : POSITION;
                 float2 uv : TEXCOORD0;
+                UNITY_VERTEX_INPUT_INSTANCE_ID
             };
 
             struct v2f
@@ -31,6 +32,7 @@ Shader "Unlit/NewUnlitShader"
                 float2 uv : TEXCOORD0;
                 UNITY_FOG_COORDS(1)
                 float4 vertex : SV_POSITION;
+                UNITY_VERTEX_OUTPUT_STEREO
             };
 
             sampler2D _MainTex;
@@ -38,9 +40,13 @@ Shader "Unlit/NewUnlitShader"
             float _ZoomLevel;
             v2f vert (appdata v)
             {
+                v2f o;
+                UNITY_SETUP_INSTANCE_ID(v);
+                UNITY_INITIALIZE_OUTPUT(v2f, o);
+                UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO(o);
                 float z = sqrt(_ZoomLevel - v.vertex[0]*v.vertex[0]*(1/25.0f) -v.vertex[2]*v.vertex[2]*(1/25.0f)) - sqrt(_ZoomLevel);
                 v.vertex = v.vertex + float4(0,z*5,0,0);
-                v2f o;
+                
                 o.vertex = UnityObjectToClipPos(v.vertex);
                 o.uv = TRANSFORM_TEX(v.uv, _MainTex);
                 UNITY_TRANSFER_FOG(o,o.vertex);

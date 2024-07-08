@@ -10,7 +10,9 @@ public class OSMRequest : MonoBehaviour
     public float lon; // Längengrad
     public int zoom = 1;
     private string urlTemplate = "https://tile.openstreetmap.org/{z}/{x}/{y}.png";
+    private float coolDown = 0.0f;
     public WeatherGetter WeatherGetter;
+    public TouchPositionFinder world;
 
     void Start()
     {
@@ -55,31 +57,58 @@ void GeoToTile(double lat, double lon, int zoom, out int tileX, out int tileY)
     tileY = (int)((1.0 - Math.Log(Math.Tan(latRad) + 1.0 / Math.Cos(latRad)) / Math.PI) / 2.0 * (1 << zoom));
 }
 
-    public void UpdateTile(float newLat, float newLon, int newZoom = 10) 
+    public void UpdateTile(float newLat, float newLon, int newZoom = 9) 
     {
         lat = newLat;
         lon = newLon;
         zoom = newZoom;
-        OnCollisionEnter(null);
         StartCoroutine(LoadTile());
     }
 
-    public void OnCollisionEnter(Collision other)
+    /*public void OnCollisionEnter(Collision other)
     {
         //just pretend the earth is flat
+        //because it is
         GeoToTile(lat,lon,zoom,out int x, out int y);
         Vector3 corner = gameObject.transform.position - new Vector3(5, 0, 0);
         float lonBottomLeft = tileToLon(x, zoom);
         float latBottomLeft = tileToLat(y + 1, zoom);
         float lonTopRight = tileToLon(x + 1, zoom);
         float latTopRight = tileToLat(y, zoom);
-        Vector3 touch = new Vector3(7, 0, 3);
+        Vector3 touch = other.GetContact(0).point - corner;
+        Debug.Log(other.GetContact(0).impulse);
         float latStep = latTopRight - latBottomLeft;
         float lonStep = lonTopRight - lonBottomLeft;
         float resLat = (touch.x / 10.0f) * latStep + latBottomLeft;
         float resLon = (touch.z / 10.0f) * lonStep + lonBottomLeft;
+        WeatherGetter.updateLocation(resLat,resLon);
         Debug.Log(resLat + ", "+ resLon);
+    }*/
+
+    private void OnTriggerEnter(Collider other)
+    {
+        world.gameObject.SetActive(true);
+        if(coolDown + 1.0f > Time.time) return;
+        coolDown = Time.time;
+        Vector3 collisionPoint = other.ClosestPoint(transform.position);
+        GeoToTile(lat,lon,zoom,out int x, out int y);
+        Vector3 corner = gameObject.transform.position - new Vector3(0.25f, 0, 0.25f);
+        float lonBottomLeft = tileToLon(x, zoom);
+        float latBottomLeft = tileToLat(y + 1, zoom);
+        float lonTopRight = tileToLon(x + 1, zoom);
+        float latTopRight = tileToLat(y, zoom);
+        Vector3 touch = collisionPoint - corner;
+        Debug.Log(touch);
+        //Debug.Log(other.GetContact(0).impulse);
+        float latStep = latTopRight - latBottomLeft;
+        float lonStep = lonTopRight - lonBottomLeft;
+        float resLat = ((touch.z / 0.5f)) * latStep + latBottomLeft;
+        float resLon = ((touch.x / 0.5f)) * lonStep + lonBottomLeft;
+        WeatherGetter.updateLocation(resLat,resLon);
+        Debug.Log(resLat + ", "+ resLon);
+        gameObject.SetActive(false);
     }
+
     private float tileToLon(float x, float zoom){
         float lonBottomLeft = (x / Mathf.Pow(2, zoom)) * 360f - 180f;
         return lonBottomLeft;
