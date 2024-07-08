@@ -4190,10 +4190,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82dd1371a07fe514b92b4dd1fe930a5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mapImage: {fileID: 0}
   lat: 0
   lon: 0
   zoom: 14
+  WeatherGetter: {fileID: 0}
 --- !u!64 &2109036263
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -4306,7 +4306,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 126
   m_CollisionDetection: 0
 --- !u!1001 &1109407790274764219
 PrefabInstance:

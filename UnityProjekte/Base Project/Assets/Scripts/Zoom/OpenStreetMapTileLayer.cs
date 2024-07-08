@@ -6,35 +6,14 @@ using System.Collections;
 
 public class OSMRequest : MonoBehaviour
 {
-    public RawImage mapImage;
     public float lat; // Breitengrad
     public float lon; // Längengrad
     public int zoom = 1;
     private string urlTemplate = "https://tile.openstreetmap.org/{z}/{x}/{y}.png";
+    public WeatherGetter WeatherGetter;
 
     void Start()
     {
-        Mesh mesh = GetComponent<MeshFilter>().mesh;
-
-        // Initialize min and max vectors
-        Vector3 min = mesh.vertices[0];
-        Vector3 max = mesh.vertices[0];
-
-        // Iterate through all vertices to find the min and max
-        foreach (Vector3 vertex in mesh.vertices)
-        {
-            if (vertex.x < min.x) min.x = vertex.x;
-            if (vertex.y < min.y) min.y = vertex.y;
-            if (vertex.z < min.z) min.z = vertex.z;
-
-            if (vertex.x > max.x) max.x = vertex.x;
-            if (vertex.y > max.y) max.y = vertex.y;
-            if (vertex.z > max.z) max.z = vertex.z;
-        }
-
-        // Print the results
-        Debug.Log("Min Vertex: " + min);
-        Debug.Log("Max Vertex: " + max);
         
         gameObject.GetComponent<Renderer>().material.SetTexture("_MainTex",Texture2D.blackTexture);
         
@@ -76,7 +55,7 @@ void GeoToTile(double lat, double lon, int zoom, out int tileX, out int tileY)
     tileY = (int)((1.0 - Math.Log(Math.Tan(latRad) + 1.0 / Math.Cos(latRad)) / Math.PI) / 2.0 * (1 << zoom));
 }
 
-    public void UpdateTile(float newLat, float newLon, int newZoom = 14) 
+    public void UpdateTile(float newLat, float newLon, int newZoom = 10) 
     {
         lat = newLat;
         lon = newLon;
@@ -87,14 +66,14 @@ void GeoToTile(double lat, double lon, int zoom, out int tileX, out int tileY)
 
     public void OnCollisionEnter(Collision other)
     {
+        //just pretend the earth is flat
         GeoToTile(lat,lon,zoom,out int x, out int y);
-        
         Vector3 corner = gameObject.transform.position - new Vector3(5, 0, 0);
         float lonBottomLeft = tileToLon(x, zoom);
         float latBottomLeft = tileToLat(y + 1, zoom);
         float lonTopRight = tileToLon(x + 1, zoom);
         float latTopRight = tileToLat(y, zoom);
-        Vector3 touch = new Vector3(10, 0, 1);
+        Vector3 touch = new Vector3(7, 0, 3);
         float latStep = latTopRight - latBottomLeft;
         float lonStep = lonTopRight - lonBottomLeft;
         float resLat = (touch.x / 10.0f) * latStep + latBottomLeft;
