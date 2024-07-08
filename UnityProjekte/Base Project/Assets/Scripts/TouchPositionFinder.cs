@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,6 +11,12 @@ public class TouchPositionFinder : MonoBehaviour
 {
     public float correction = 155.0f;
     public WeatherGetter weatherGetter;
+    public OSMRequest zoomMap;
+
+    private void Start()
+    {
+        zoomMap.UpdateTile(48.523083f,9.060778f);
+    }
 
     void OnCollisionEnter(Collision collision) {
             Debug.Log(collision.contacts.Length);
@@ -31,7 +38,8 @@ public class TouchPositionFinder : MonoBehaviour
             lon+=correction;
             //modulo
             lon -= lon > 180?180:0;
-            weatherGetter.updateLocation(lat,lon);
+            zoomMap.UpdateTile(lat,lon);
+            //weatherGetter.updateLocation(lat,lon);
         //Only WORKS FOR WORLD (Simpleworld2)
 
 
