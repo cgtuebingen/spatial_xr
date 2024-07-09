@@ -53,7 +53,8 @@ public class TouchPositionFinder : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log(other.GetComponent<Rigidbody>().velocity);
+        Debug.Log("asdf");
+        Debug.Log(other.GetComponent<Rigidbody>().velocity*10000000000.0f);
         zoomMap.gameObject.SetActive(true);
         if(coolDown + 1.0f > Time.time) return;
         coolDown = Time.time;

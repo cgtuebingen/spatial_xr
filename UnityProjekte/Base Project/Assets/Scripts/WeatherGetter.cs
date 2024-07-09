@@ -17,6 +17,7 @@ public class WeatherGetter : MonoBehaviour
     private DateTime requestTime;
     //the API the current request should be sent to
     private API api;
+
     void start()
     {
         requestTime = DateTime.Now;

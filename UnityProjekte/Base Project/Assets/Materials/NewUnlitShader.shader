@@ -4,6 +4,9 @@ Shader "Unlit/NewUnlitShader"
     {
         _MainTex ("Texture", 2D) = "white" {}
         _ZoomLevel ("Zoom Level", Float) = 100
+        _TexList ("Map Parts", 2DArray) = "white"{}
+        _OffsetX("OffsetX", Float)= 0.0
+        _OffsetY("OffsetY",Float) = 0.0
     }
     SubShader
     {
@@ -38,6 +41,9 @@ Shader "Unlit/NewUnlitShader"
             sampler2D _MainTex;
             float4 _MainTex_ST;
             float _ZoomLevel;
+            UNITY_DECLARE_TEX2DARRAY(_TexList);
+            float _OffsetX;
+            float _OffsetY;
             v2f vert (appdata v)
             {
                 v2f o;
@@ -56,7 +62,11 @@ Shader "Unlit/NewUnlitShader"
             fixed4 frag (v2f i) : SV_Target
             {
                 // sample the texture
-                fixed4 col = tex2D(_MainTex, i.uv);
+                //fixed4 col = tex2D(_MainTex, i.uv);
+
+                int index = int(i.uv[0] + 1.0 + _OffsetX) + 3*int(i.uv[1]+1.0 + _OffsetY);
+                float2 uv = frac(i.uv + float2(_OffsetX,_OffsetY));
+                fixed4 col = UNITY_SAMPLE_TEX2DARRAY(_TexList,float3(uv,index));
                 // apply fog
                 UNITY_APPLY_FOG(i.fogCoord, col);
                 return col;
