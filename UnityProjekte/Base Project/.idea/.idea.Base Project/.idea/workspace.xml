@@ -7,13 +7,8 @@
     <list default="true" id="8144ff02-fef5-491a-a423-e41a7e38cef2" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Base Project/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Base Project/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/OWMResult.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/OWMResult.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/OWMResult.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/OWMResult.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/OpenMeteoResult.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/OpenMeteoResult.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/OpenMeteoWeather.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/OpenMeteoWeather.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/OpenMeteoWeather.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/OpenMeteoWeather.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/WeatherGetter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/WeatherGetter.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/WeatherGetter.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/WeatherGetter.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/TouchPositionFinder.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/TouchPositionFinder.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/TouchPositionFinder.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/TouchPositionFinder.cs.meta" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -123,7 +118,7 @@
       <workItem from="1720692568138" duration="3243000" />
       <workItem from="1720701124121" duration="892000" />
       <workItem from="1720729141789" duration="272000" />
-      <workItem from="1720729525637" duration="947000" />
+      <workItem from="1720729525637" duration="2308000" />
     </task>
     <servers />
   </component>
