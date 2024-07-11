@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -33,7 +34,6 @@ public class TouchPositionFinder : MonoBehaviour
             lon -= lon > 180?180:0;
             weatherGetter.updateLocation(lat,lon);
         //Only WORKS FOR WORLD (Simpleworld2)
-
 
         Destroy(GameObject.FindWithTag("World")); //We can change the name of SimpleWorld2 without needing to change the code
     }

@@ -5,19 +5,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8144ff02-fef5-491a-a423-e41a7e38cef2" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.Base Project/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.Base Project/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Wetter/Regen 1.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Base Project/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Base Project/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/TouchPositionFinder.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/TouchPositionFinder.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sun.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sun/Sun.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sun/Sun.prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sun/SunColors.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sun/SunColors/BlackBackgroundTest.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sun/SunColors/BlackBackgroundTest.mat.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sun/SunColors/SolidSunMaterial.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sun/SunColors/SolidSunMaterial.mat.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Wetter/DunkleWolke.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Wetter/DunkleWolke.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Wetter/NormaleWolken.mat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Wetter/NormaleWolken.mat.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Wetter/Wetter.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Wetter/Wetter.prefab.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Wetter/Regen 1.prefab.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Wetter/pngegg.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Wetter/pngegg.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Wetter/Regen 1.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Wetter/Regen 1.prefab.meta" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -124,6 +125,8 @@
       <workItem from="1720440619729" duration="1287000" />
       <workItem from="1720646531690" duration="626000" />
       <workItem from="1720648615355" duration="661000" />
+      <workItem from="1720692568138" duration="3243000" />
+      <workItem from="1720701124121" duration="892000" />
     </task>
     <servers />
   </component>
