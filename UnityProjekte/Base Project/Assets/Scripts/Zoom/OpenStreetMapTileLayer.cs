@@ -11,6 +11,8 @@ public class OSMRequest : MonoBehaviour
     public int zoom = 1;
     private string urlTemplate = "https://tile.openstreetmap.org/{z}/{x}/{y}.png";
     private float coolDown = 0.0f;
+    //delta time
+    private float delta = 0.0f;
     public WeatherGetter WeatherGetter;
     public TouchPositionFinder world;
     private Vector3 firstPos;
@@ -41,7 +43,7 @@ public class OSMRequest : MonoBehaviour
         offsetY = Mathf.Clamp(offsetY, -1, 1);
         mainMat.SetFloat("_OffsetX",offsetX);
         mainMat.SetFloat("_OffsetY",offsetY);
-        velocity = velocity * 0.97f;
+        velocity = velocity * 0.95f;
     }
 
     IEnumerator LoadTile(int offsetTileIndex)
@@ -114,44 +116,56 @@ void GeoToTile(double lat, double lon, int zoom, out int tileX, out int tileY)
 
     private void OnTriggerEnter(Collider other)
     {
-        Vector3 collisionPoint = other.ClosestPoint(transform.position);
+        Vector3 collisionPoint = transform.InverseTransformPoint(other.transform.position);
         firstPos = collisionPoint;
-
+        delta = Time.time;
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if(coolDown + 0.3f > Time.time) return;
         
+        if(coolDown + 0.3f > Time.time) return;
         coolDown = Time.time;
-        Vector3 collisionPoint = other.ClosestPoint(transform.position);
-        //swipe detection
-        Vector3 contactVector = firstPos - other.ClosestPoint(transform.position);
-        if (contactVector.magnitude <= swipeSensitivity)
+        float deltaTime = (Time.time - delta);
+        Vector3 collisionPoint = transform.InverseTransformPoint(other.transform.position);
+            //other.ClosestPoint(transform.position);
+
+        //swipe detection, a swipe covers a long distance in short time
+        Vector3 contactVector = firstPos - collisionPoint;
+        if (contactVector.magnitude*deltaTime <= swipeSensitivity)
         {
             world.gameObject.SetActive(true);
             GeoToTile(lat, lon, zoom, out int x, out int y);
-            Vector3 corner = gameObject.transform.position - new Vector3(0.25f, 0, 0.25f);
+
             float lonBottomLeft = tileToLon(x, zoom);
             float latBottomLeft = tileToLat(y + 1, zoom);
             float lonTopRight = tileToLon(x + 1, zoom);
             float latTopRight = tileToLat(y, zoom);
-            Vector3 touch = collisionPoint - corner;
+            Vector3 corner =  new Vector3(-5f, -0f, -5f);
+            Debug.Log("ccccc" + contactVector.magnitude*deltaTime);
+            //account for rotation gameObject.transform.position -
+            Vector3 touch = new Vector3(10,0,10) - (collisionPoint - corner);
+            Debug.Log(touch);
             float latStep = latTopRight - latBottomLeft;
             float lonStep = lonTopRight - lonBottomLeft;
-            float resLat = ((touch.z / 0.5f) + offsetY) * latStep + latBottomLeft;
-            float resLon = ((touch.x / 0.5f) + offsetX) * lonStep + lonBottomLeft;
+            float resLat = ((touch.z / 10f) + offsetY) * latStep + latBottomLeft;
+            float resLon = ((touch.x / 10f) + offsetX) * lonStep + lonBottomLeft;
             WeatherGetter.updateLocation(resLat, resLon);
             Debug.Log(resLat + ", " + resLon);
-
+            //reset offsets
+            offsetX = 0;
+            offsetY = 0;
             gameObject.SetActive(false);
         }
         else
         {
-            velocity =  new Vector2(contactVector.x, contactVector.z) * swipeVelocity;
+            Debug.Log(contactVector.magnitude*deltaTime);
+            velocity =  new Vector2(contactVector.x, contactVector.z) * -swipeVelocity/deltaTime;
         }
         
     }
+
+
 
     private float tileToLon(float x, float zoom){
         float lonBottomLeft = (x / Mathf.Pow(2, zoom)) * 360f - 180f;
