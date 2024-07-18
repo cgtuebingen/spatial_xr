@@ -23,6 +23,8 @@ public class exampleUIText : MonoBehaviour
     public GameObject snowVisualization;
     //CLOUDS
     public GameObject cloudsVisualization;
+    //THUNDERSTORN
+    public GameObject thunderstormVisualization;
 
     // Start is called before the first frame update
     void Start()
@@ -67,6 +69,8 @@ public class exampleUIText : MonoBehaviour
                 return "Schnee";
             case WeatherResult.WeatherType.CLOUDS:
                 return "Wolken";
+            case WeatherResult.WeatherType.THUNDERSTORM:
+                return "Donner";
             //in case of new types of weather, add them here, eg. 
             default:
                 return "Todo: Implement";
@@ -81,6 +85,7 @@ public class exampleUIText : MonoBehaviour
         snowVisualization.SetActive(false);
         cloudsVisualization.SetActive(false);
         rainVisualization.SetActive(false);
+        thunderstormVisualization.SetActive(false);
     }
 
     void activateVisualizationObject(WeatherResult.WeatherType? weather)
@@ -104,6 +109,9 @@ public class exampleUIText : MonoBehaviour
                 return;
             case WeatherResult.WeatherType.CLOUDS:
                 cloudsVisualization.SetActive(true);
+                return;
+            case WeatherResult.WeatherType.THUNDERSTORM:
+                thunderstormVisualization.SetActive(true);
                 return;
             default:
                 Debug.Log("todo: implement");

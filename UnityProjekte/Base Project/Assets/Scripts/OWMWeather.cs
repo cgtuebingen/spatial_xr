@@ -12,6 +12,7 @@ public class OWMWeather : WeatherResult
         switch (firstDigit){
             //Thunderstorm
             case 2:
+            return WeatherType.THUNDERSTORM;
             //Drizzle
             case 3:
             //Rain
