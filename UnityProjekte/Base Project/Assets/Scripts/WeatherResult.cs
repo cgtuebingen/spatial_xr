@@ -17,7 +17,7 @@ public abstract class WeatherResult {
     }
 
     public enum WeatherType{
-        SUN,RAIN,SNOW,CLOUDS
+        SUN,RAIN,SNOW,CLOUDS,THUNDERSTORM
     }
 }
     

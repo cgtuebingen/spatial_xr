@@ -7,7 +7,6 @@ public class OpenMeteoWeather : WeatherResult
 
     public OpenMeteoWeather(double temp, int id, string city):base(temp,parseWeatherFromID(id),city) {
     }    
-   //Based on: https://openweathermap.org/weather-conditions
     public static WeatherResult.WeatherType parseWeatherFromID(int id){
         switch (id){
             case 0:
@@ -21,6 +20,10 @@ public class OpenMeteoWeather : WeatherResult
             case 75:
             case 77:
             return WeatherResult.WeatherType.SNOW;
+            case 95:
+            case 96: 
+            case 99:
+            return WeatherResult.WeatherType.THUNDERSTORM;
             default:
             return WeatherResult.WeatherType.RAIN;
 

@@ -31,8 +31,8 @@ public class OSMRequest : MonoBehaviour
         mainMat.SetTexture("_MainTex", Texture2D.blackTexture);
         mainMat.SetTexture("_TexList", textures);
         velocity = new Vector2(0f, 0f);
-
-
+        //initialize, then wait for click
+        gameObject.SetActive(false);
     }
 
     private void Update()
@@ -134,6 +134,7 @@ void GeoToTile(double lat, double lon, int zoom, out int tileX, out int tileY)
         Vector3 contactVector = firstPos - collisionPoint;
         if (contactVector.magnitude*deltaTime <= swipeSensitivity)
         {
+            gameObject.SetActive(false);
             world.gameObject.SetActive(true);
             GeoToTile(lat, lon, zoom, out int x, out int y);
 
@@ -142,20 +143,18 @@ void GeoToTile(double lat, double lon, int zoom, out int tileX, out int tileY)
             float lonTopRight = tileToLon(x + 1, zoom);
             float latTopRight = tileToLat(y, zoom);
             Vector3 corner =  new Vector3(-5f, -0f, -5f);
-            Debug.Log("ccccc" + contactVector.magnitude*deltaTime);
             //account for rotation gameObject.transform.position -
             Vector3 touch = new Vector3(10,0,10) - (collisionPoint - corner);
-            Debug.Log(touch);
             float latStep = latTopRight - latBottomLeft;
             float lonStep = lonTopRight - lonBottomLeft;
             float resLat = ((touch.z / 10f) + offsetY) * latStep + latBottomLeft;
             float resLon = ((touch.x / 10f) + offsetX) * lonStep + lonBottomLeft;
             WeatherGetter.updateLocation(resLat, resLon);
-            Debug.Log(resLat + ", " + resLon);
+
             //reset offsets
             offsetX = 0;
             offsetY = 0;
-            gameObject.SetActive(false);
+            
         }
         else
         {

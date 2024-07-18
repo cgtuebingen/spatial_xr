@@ -133,7 +133,7 @@ public class WeatherGetter : MonoBehaviour
         }
         else
         {
-            Debug.Log("forecast");
+
             //requestString = baseURLOPENM + "?latitude=" + lat + "&longitude=" + lon + "&hourly=temperature_2m,weather_code&start_date=" + requestTime.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture) + "&end_date=" + requestTime.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture);
             api = API.OPEN_METEO;
             StartCoroutine(GetRequestToOMBCoords(lat,lon));

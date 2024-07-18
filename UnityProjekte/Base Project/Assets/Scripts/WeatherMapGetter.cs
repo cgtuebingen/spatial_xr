@@ -20,7 +20,6 @@ public class WeatherMapGetter : MonoBehaviour
         {
             for (int y = 0; y < (int)Math.Pow(2, zoomLevel); y++)
             {
-                Debug.Log("" + x + y + zoomLevel);
                 StartCoroutine(GetText(layer, x, y, zoomLevel));
             }
         }
@@ -29,18 +28,7 @@ public class WeatherMapGetter : MonoBehaviour
     }
     IEnumerator GetText(string layer, int x, int y, int z)
     {
-        if (false)
-        {
-            Color[] colors = new Color[256*256];
-            Array.Fill(colors, Color.black);
-            textures.SetPixels(colors,1,0);
-            textures.Apply(true);
-
-            yield break;
-                
-        }
         string url = baseURl + layer + "/"+z+"/"+x+"/"+y+".png?appid=" + apiKey;
-        Debug.Log(url);
         using (UnityWebRequest uwr = UnityWebRequestTexture.GetTexture(url))
         {
             yield return uwr.SendWebRequest();
