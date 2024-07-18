@@ -16,9 +16,7 @@ public class TouchPositionFinder : MonoBehaviour
     
     private void Start()
     {
-        
-        //zoomMap.UpdateTile(48.523083f,9.060778f);
-        zoomMap.gameObject.SetActive(false);
+
     }
 
     void OnCollisionEnter(Collision collision) {
@@ -53,8 +51,7 @@ public class TouchPositionFinder : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("asdf");
-        Debug.Log(other.GetComponent<Rigidbody>().velocity*10000000000.0f);
+        gameObject.SetActive(false);
         zoomMap.gameObject.SetActive(true);
         if(coolDown + 1.0f > Time.time) return;
         coolDown = Time.time;
@@ -74,6 +71,6 @@ public class TouchPositionFinder : MonoBehaviour
         //modulo
         lon -= lon > 180?180:0;
         zoomMap.UpdateTile(lat,lon);
-        gameObject.SetActive(false);
+
     }
 }

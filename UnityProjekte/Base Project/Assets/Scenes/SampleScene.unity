@@ -171,7 +171,7 @@ Transform:
   m_GameObject: {fileID: 53049321}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.5907425, y: 1.0453467, z: -0.32054043}
+  m_LocalPosition: {x: 0.590743, y: 1.0453471, z: -0.32054073}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -564,6 +564,7 @@ MonoBehaviour:
   rainVisualization: {fileID: 1340338224}
   snowVisualization: {fileID: 1306165438}
   cloudsVisualization: {fileID: 1872867337}
+  thunderstormVisualization: {fileID: 0}
 --- !u!114 &756506624 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1584387158775502092, guid: e5ead8fd44a55594e89408001b2135b3, type: 3}
@@ -967,7 +968,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1382179640964178956, guid: 03c032757eb5fcf40b30f48ed831f8fc, type: 3}
       propertyPath: swipeSensitivity
-      value: 1
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 4477400166727630927, guid: 03c032757eb5fcf40b30f48ed831f8fc, type: 3}
       propertyPath: m_LocalScale.x
@@ -983,15 +984,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4477400166727630927, guid: 03c032757eb5fcf40b30f48ed831f8fc, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.5221
+      value: 0.5175
       objectReference: {fileID: 0}
     - target: {fileID: 4477400166727630927, guid: 03c032757eb5fcf40b30f48ed831f8fc, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.0333
+      value: 1.3127
       objectReference: {fileID: 0}
     - target: {fileID: 4477400166727630927, guid: 03c032757eb5fcf40b30f48ed831f8fc, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.6728
+      value: 0.5205
       objectReference: {fileID: 0}
     - target: {fileID: 4477400166727630927, guid: 03c032757eb5fcf40b30f48ed831f8fc, type: 3}
       propertyPath: m_LocalRotation.w
