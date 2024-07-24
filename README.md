@@ -24,7 +24,7 @@ For detailed installation instructions, please visit our [Wiki](https://github.c
 
 ## About 
 
-This Projekt is developed as a Team Projekt of the Eberhards Karls University Tuebingen under the supervision of Jan-Niklas Dihlman at the Computer Graphics Chair. We would like to thank JAn_Niklas for providinh guidance, help and a Meta Quest 3 for development aswell as all our Participants.
+This Projekt is developed as a Team Projekt of the Eberhards Karls University Tuebingen under the supervision of Jan-Niklas Dihlman at the Computer Graphics Chair. We would like to thank JAn_Niklas for providing guidance, help and a Meta Quest 3 for development aswell as all our Participants.
 It was a challange aswell as a joy and we are thankfull to work in this Team and face the reality of Virtual Reality.
 
 
