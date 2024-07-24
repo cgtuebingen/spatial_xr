@@ -4,7 +4,13 @@
 
 ## Description:
 
-Dive into an immersive weather experience with Weather Globe! Discover real-time weather conditions and forecasts for any location in the world, right from your virtual workspace. Whether you want to sync your weather with colleagues in New York or simply enjoy a scenic weather display, Weather Globe is your ultimate virtual weather companion.
+Currently, many companies are delving into the realm of mixed reality. However, their interfaces often remain flat 2D projections in a 3D world, falling short of the immersive future we envision. What if, instead, apps were interactive 3D objects? With Weather Globe, we bring this vision to life.
+
+Dive into an immersive weather experience with Weather Globe! Discover real-time weather conditions and forecasts for any location in the world, right from your virtual workspace. Weather Globe transforms the mundane task of checking the weather into a visually captivating experience. Imagine interacting with a realistic, 3D globe that integrates with your virtual environment. Rotate it, zoom in, or explore different regions with just a few gestures.
+
+Whether you need to sync weather updates with colleagues in New York, coordinate international travel plans, or simply enjoy a dynamic and scenic weather display, Weather Globe is your ultimate virtual weather companion. It not only provides precise weather information but also enhances your workspace with a stunning, interactive visualization that brings the global climate into your hands.
+
+Say goodbye to flat, uninspiring weather apps and embrace a new era of immersive interaction with Weather Globe. Experience weather in 3D like never before and elevate your virtual workspace to new heights.
 
 ## Features
 
@@ -24,8 +30,7 @@ For detailed installation instructions, please visit our [Wiki](https://github.c
 
 ## About 
 
-This Projekt is developed as a Team Projekt of the Eberhards Karls University Tuebingen under the supervision of Jan-Niklas Dihlman at the Computer Graphics Chair. We would like to thank JAn_Niklas for providing guidance, help and a Meta Quest 3 for development aswell as all our Participants.
-It was a challange aswell as a joy and we are thankfull to work in this Team and face the reality of Virtual Reality.
+This project was developed as a team project at Eberhard Karls University Tübingen under the supervision of Jan-Niklas Dihlmann at the Computer Graphics Chair. We would like to thank Jan-Niklas for providing guidance, help, and a Meta Quest 3 for development, as well as all our participants. Working on this project was a journey filled with both challenges and joys. We are grateful for the opportunity to collaborate, explore the immersive possibilities of virtual reality, and bring our vision to life.
 
 
 
