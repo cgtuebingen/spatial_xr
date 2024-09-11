@@ -23,6 +23,7 @@ public class OSMRequest : MonoBehaviour
     public float swipeSensitivity = 0.1f;
     private Vector2 velocity;
     public float swipeVelocity = 0.2f;
+    private TileCache cache;
     void Start()
     {
         mainMat = gameObject.GetComponent<Renderer>().material;
@@ -31,6 +32,8 @@ public class OSMRequest : MonoBehaviour
         mainMat.SetTexture("_MainTex", Texture2D.blackTexture);
         mainMat.SetTexture("_TexList", textures);
         velocity = new Vector2(0f, 0f);
+        //initialize the cache
+        cache = new TileCache();
         //initialize, then wait for click
         gameObject.SetActive(false);
     }
@@ -65,6 +68,14 @@ public class OSMRequest : MonoBehaviour
         {
             tileY += (int)Math.Pow(2, zoom);
         }
+        //check the cache first!!
+        Color[] res = cache.Get(tileX, tileY, zoom);
+        if (res != null)
+        {
+            textures.SetPixels(res, offsetTileIndex);
+            textures.Apply(true);
+            yield break;
+        }
         // Ersetze Platzhalter in der URL mit den tatsächlichen Werten
         string url = urlTemplate.Replace("{z}", zoom.ToString())
                                 .Replace("{x}", tileX.ToString())
@@ -88,9 +99,11 @@ public class OSMRequest : MonoBehaviour
                     //arr.SetPixels(colors,i,0);
                     
                 }
+                //insert into the Cache
+                cache.Insert(tileX,tileY,zoom,texture.GetPixels());
                 textures.SetPixels(texture.GetPixels(), offsetTileIndex);
                 textures.Apply(true);
-                mainMat.SetTexture("_MainTex",texture);
+                //mainMat.SetTexture("_MainTex",texture);
             }
         }
     }
