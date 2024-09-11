@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 //this is a simple tile cache so we don't always request something we already got  
@@ -20,8 +21,13 @@ public class TileCache
         List<TileCacheEntry> row = table[hashCode(x, y, z)];
         foreach(TileCacheEntry entry in row)
         {
-            if (entry.x == x && entry.y == y && entry.z == z) return entry.value;
+            if (entry.x == x && entry.y == y && entry.z == z)
+            {
+                Debug.Log("hit");
+                return entry.value;
+            }
         }
+        Debug.Log("miss");
         return null;
     }
     //add something to the cache
@@ -36,6 +42,6 @@ public class TileCache
         int prime1 = 73856093;
         int prime2 = 19349663;
         int prime3 = 83492791;
-        return (x * prime1 + y * prime2 + z * prime3) % TABLE_SIZE;
+        return Math.Abs((x * prime1 + y * prime2 + z * prime3) % TABLE_SIZE);
     }
 }

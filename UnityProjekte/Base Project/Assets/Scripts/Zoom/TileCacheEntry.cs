@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 //this is an entry into the Tile Cache
 public class TileCacheEntry
@@ -20,6 +21,6 @@ public class TileCacheEntry
         int prime1 = 73856093;
         int prime2 = 19349663;
         int prime3 = 83492791;
-        return (x * prime1 + y * prime2 + z * prime3) % tableSize;
+        return Math.Abs((x * prime1 + y * prime2 + z * prime3) % tableSize);
     }
 }

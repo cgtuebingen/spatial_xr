@@ -177,6 +177,21 @@ void GeoToTile(double lat, double lon, int zoom, out int tileX, out int tileY)
         
     }
 
+    public void changeZoom(int step)
+    {
+        GeoToTile(lat, lon, zoom, out int x, out int y);
+        float lonBottomLeft = tileToLon(x, zoom);
+        float latBottomLeft = tileToLat(y + 1, zoom);
+        float lonTopRight = tileToLon(x + 1, zoom);
+        float latTopRight = tileToLat(y, zoom);
+        float latStep = latTopRight - latBottomLeft;
+        float lonStep = lonTopRight - lonBottomLeft;
+        float resLat = offsetY * latStep + latBottomLeft;
+        float resLon = offsetX * lonStep + lonBottomLeft;
+        offsetX = 0;
+        offsetY = 0;
+        UpdateTile(resLat, resLon, zoom + step);
+    }
 
 
     private float tileToLon(float x, float zoom){
