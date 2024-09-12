@@ -236,7 +236,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   map: {fileID: 954090022}
-  zoomEffectMagnitude: -1
+  zoomEffectVal: -1
 --- !u!65 &192500422
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4021,7 +4021,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   map: {fileID: 954090022}
-  zoomEffectMagnitude: 1
+  zoomEffectVal: 1
 --- !u!65 &2116603650
 BoxCollider:
   m_ObjectHideFlags: 0

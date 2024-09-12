@@ -23,11 +23,11 @@ public class TileCache
         {
             if (entry.x == x && entry.y == y && entry.z == z)
             {
-                Debug.Log("hit");
+                //Debug.Log("hit");
                 return entry.value;
             }
         }
-        Debug.Log("miss");
+        //Debug.Log("miss");
         return null;
     }
     //add something to the cache

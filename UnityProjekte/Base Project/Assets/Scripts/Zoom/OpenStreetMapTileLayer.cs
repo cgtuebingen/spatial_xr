@@ -24,6 +24,7 @@ public class OSMRequest : MonoBehaviour
     private Vector2 velocity;
     public float swipeVelocity = 0.2f;
     private TileCache cache;
+    private float zoomOffset = 1.0f;
     void Start()
     {
         mainMat = gameObject.GetComponent<Renderer>().material;
@@ -42,10 +43,12 @@ public class OSMRequest : MonoBehaviour
     {
         offsetX += velocity.x;
         offsetY += velocity.y;
+        zoomOffset = (zoomOffset + 0.1f)/1.1f;
         offsetX = Mathf.Clamp(offsetX, -1, 1);
         offsetY = Mathf.Clamp(offsetY, -1, 1);
         mainMat.SetFloat("_OffsetX",offsetX);
         mainMat.SetFloat("_OffsetY",offsetY);
+        mainMat.SetFloat("_ZoomOffset", zoomOffset);
         velocity = velocity * 0.95f;
     }
 
@@ -179,6 +182,12 @@ void GeoToTile(double lat, double lon, int zoom, out int tileX, out int tileY)
 
     public void changeZoom(int step)
     {
+        if (step == 1)
+        {
+            zoomOffset = 2f;
+        }
+        else zoomOffset = 0.5f;
+        //recenter
         GeoToTile(lat, lon, zoom, out int x, out int y);
         float lonBottomLeft = tileToLon(x, zoom);
         float latBottomLeft = tileToLat(y + 1, zoom);
@@ -186,8 +195,8 @@ void GeoToTile(double lat, double lon, int zoom, out int tileX, out int tileY)
         float latTopRight = tileToLat(y, zoom);
         float latStep = latTopRight - latBottomLeft;
         float lonStep = lonTopRight - lonBottomLeft;
-        float resLat = offsetY * latStep + latBottomLeft;
-        float resLon = offsetX * lonStep + lonBottomLeft;
+        float resLat = (offsetY+0.5f) * latStep + latBottomLeft;
+        float resLon = (offsetX+0.5f) * lonStep + lonBottomLeft;
         offsetX = 0;
         offsetY = 0;
         UpdateTile(resLat, resLon, zoom + step);
