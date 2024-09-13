@@ -4,6 +4,7 @@ using UnityEngine;
 
 public static class APIKey 
 {
+    //Add your API key here:
     public static string apiKey = "";
 
 }
