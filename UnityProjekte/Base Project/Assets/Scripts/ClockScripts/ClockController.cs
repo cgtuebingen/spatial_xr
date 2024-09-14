@@ -90,7 +90,7 @@ void UpdateClock()
             }
         }
 
-        if (int.Parse(monthTextFirst.text) < 0)
+        if (int.Parse(monthTextFirst.text) < 1)
             {
                 monthTextSecond.text = "1";
             }
