@@ -23,7 +23,7 @@ public class exampleUIText : MonoBehaviour
     public GameObject snowVisualization;
     //CLOUDS
     public GameObject cloudsVisualization;
-    //THUNDERSTORN
+    //THUNDERSTORN  
     public GameObject thunderstormVisualization;
 
     // Start is called before the first frame update
