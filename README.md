@@ -36,6 +36,6 @@ This project was developed as a team project at Eberhard Karls University Tübin
 
 ## Licensing
 
-This is a non-commercial student project, released under the MIT License. You are free to fork the code and use it for any non commercial purpose, as long as you comply with the terms of the license. Please note that we cannot guarantee the functionality of the code, and we will not take any responsibility or liability for any issues or damages caused by its use. Furthermore, the images created by the students who contributed to this project are not allowed to be shared in public or used in any other work without their explicit permission. If you have any questions about the licensing of this project, please don't hesitate to contact us.
+This is a non-commercial student project, released under the GPLv3 License. Please note that we cannot guarantee the functionality of the code, and we will not take any responsibility or liability for any issues or damages caused by its use. Furthermore, the images created by the students who contributed to this project are not allowed to be shared in public or used in any other work without their explicit permission. If you have any questions about the licensing of this project, please don't hesitate to contact us.
 
 
