@@ -5,7 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8144ff02-fef5-491a-a423-e41a7e38cef2" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/APIKey.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/APIKey.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Base Project/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Base Project/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UIText.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UIText.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Wetter/CloudsV2/SimpleRain/RaindropMat.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Wetter/CloudsV2/SimpleRain/RaindropMat.mat" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -138,6 +142,7 @@
       <workItem from="1726397189054" duration="814000" />
       <workItem from="1726401643776" duration="265000" />
       <workItem from="1726403010119" duration="1000" />
+      <workItem from="1726403175195" duration="1101000" />
     </task>
     <servers />
   </component>

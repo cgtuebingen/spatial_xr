@@ -90,27 +90,56 @@ public class exampleUIText : MonoBehaviour
 
     void activateVisualizationObject(WeatherResult.WeatherType? weather)
     {
-        disableAllVisualizations();
         if (weather is null)
         {
             errorVisualization.SetActive(true);
+            sunVisualization.SetActive(false);
+            snowVisualization.SetActive(false);
+            cloudsVisualization.SetActive(false);
+            rainVisualization.SetActive(false);
+            thunderstormVisualization.SetActive(false);
             return;
         }
         switch (weather)
         {
             case WeatherResult.WeatherType.RAIN:
+                errorVisualization.SetActive(false);
+                sunVisualization.SetActive(false);
+                snowVisualization.SetActive(false);
+                cloudsVisualization.SetActive(false);
+                thunderstormVisualization.SetActive(false);
                 rainVisualization.SetActive(true);
                 return;
             case WeatherResult.WeatherType.SUN:
+                errorVisualization.SetActive(false);
+                snowVisualization.SetActive(false);
+                cloudsVisualization.SetActive(false);
+                rainVisualization.SetActive(false);
+                thunderstormVisualization.SetActive(false);
                 sunVisualization.SetActive(true);
                 return;
             case WeatherResult.WeatherType.SNOW:
+                errorVisualization.SetActive(false);
+                sunVisualization.SetActive(false);
+                cloudsVisualization.SetActive(false);
+                rainVisualization.SetActive(false);
+                thunderstormVisualization.SetActive(false);
                 snowVisualization.SetActive(true);
                 return;
             case WeatherResult.WeatherType.CLOUDS:
+                errorVisualization.SetActive(false);
+                sunVisualization.SetActive(false);
+                snowVisualization.SetActive(false);
+                rainVisualization.SetActive(false);
+                thunderstormVisualization.SetActive(false);
                 cloudsVisualization.SetActive(true);
                 return;
             case WeatherResult.WeatherType.THUNDERSTORM:
+                errorVisualization.SetActive(false);
+                sunVisualization.SetActive(false);
+                snowVisualization.SetActive(false);
+                cloudsVisualization.SetActive(false);
+                rainVisualization.SetActive(false);
                 thunderstormVisualization.SetActive(true);
                 return;
             default:
