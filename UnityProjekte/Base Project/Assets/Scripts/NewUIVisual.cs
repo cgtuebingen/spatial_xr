@@ -62,15 +62,15 @@ public class exampleUIText : MonoBehaviour
     string weatherToFriendlyString(WeatherResult.WeatherType weather){
         switch(weather){
             case WeatherResult.WeatherType.RAIN:
-                return "Regen";
+                return "rain";
             case WeatherResult.WeatherType.SUN:
-                return "Sonne";
+                return "sun";
             case WeatherResult.WeatherType.SNOW:
-                return "Schnee";
+                return "snow";
             case WeatherResult.WeatherType.CLOUDS:
-                return "Wolken";
+                return "clouds";
             case WeatherResult.WeatherType.THUNDERSTORM:
-                return "Donner";
+                return "thunderstorm";
             //in case of new types of weather, add them here, eg. 
             default:
                 return "Todo: Implement";
