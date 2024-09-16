@@ -1,11 +1,6 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 
 public class TouchPositionFinder : MonoBehaviour
 {
@@ -14,8 +9,13 @@ public class TouchPositionFinder : MonoBehaviour
     public OSMRequest zoomMap;
     public float coolDown = 0.0f;
     
-    private void Start()
+
+    private void Update()
     {
+        Vector3 test = new Vector3(1, 1, 1);
+        Quaternion rot = gameObject.transform.rotation;
+        test = Quaternion.Inverse(rot) * test;
+        Debug.DrawLine(transform.position, transform.position + test, Color.red);
 
     }
 
@@ -57,6 +57,27 @@ public class TouchPositionFinder : MonoBehaviour
         coolDown = Time.time;
         Vector3 collisionPoint = other.ClosestPoint(transform.position);
         Vector3 touchVector = (collisionPoint - gameObject.transform.position).normalized;
+        //compensate for rotation
+
+        Debug.Log("Before:" + touchVector);
+        //life is pain
+        Vector3 angles = gameObject.transform.rotation.eulerAngles;
+        Quaternion rot = gameObject.transform.rotation;
+        Quaternion sphereRot = Quaternion.Euler(270,0,0);
+        
+        Debug.Log(rot.eulerAngles);
+        //x-Axis
+        //touchVector = rotateAround(90, touchVector, new Vector3(1,0,0));
+        //y-Axis
+        //touchVector = rotateAround(180, touchVector, new Vector3(0, 1, 0));
+        //z-Axis
+        
+        touchVector = Quaternion.Inverse(rot) * touchVector;
+        touchVector = sphereRot * touchVector;
+        Debug.Log("inv ang" + Quaternion.Inverse(rot).eulerAngles);
+        //touchVector = rotateAround(180, touchVector, Vector3.up);
+        
+        Debug.Log("After:" + touchVector);
         float x = touchVector.x;
         //why why why
         float y = touchVector.z;
@@ -70,7 +91,14 @@ public class TouchPositionFinder : MonoBehaviour
         lon+=correction;
         //modulo
         lon -= lon > 180?180:0;
+        Debug.Log(lat + ", " + lon);
         zoomMap.UpdateTile(lat,lon);
 
+    }
+
+    public Vector3 rotateAround(float angle, Vector3 vector, Vector3 axis)
+    {
+        Quaternion rotation = Quaternion.AngleAxis(angle, axis);
+        return rotation * vector;
     }
 }
