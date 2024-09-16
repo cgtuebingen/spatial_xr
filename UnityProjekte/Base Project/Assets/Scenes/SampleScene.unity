@@ -18568,6 +18568,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4911207460448613838}
   - component: {fileID: 5720641930203361141}
+  - component: {fileID: 5720641930203361142}
   m_Layer: 0
   m_Name: ZoomPlus
   m_TagString: Untagged
@@ -18596,6 +18597,20 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2.8983343, y: 0.17480052, z: 2.9336152}
   m_Center: {x: -0.045954805, y: 0.02721518, z: 0.0891545}
+--- !u!114 &5720641930203361142
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5720641930203361140}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02dc700cf7fde444f8e90deffa982135, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  map: {fileID: 954090022}
+  zoomEffectVal: 1
 --- !u!4 &5725087052907633102
 Transform:
   m_ObjectHideFlags: 0
@@ -23600,6 +23615,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8918049949127513553}
   - component: {fileID: 8918049949127513554}
+  - component: {fileID: 8918049949127513555}
   m_Layer: 0
   m_Name: ZoomMinus
   m_TagString: Untagged
@@ -25337,6 +25353,20 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2.8911383, y: 0.16826725, z: 3.0161064}
   m_Center: {x: 0.04693344, y: 0.006185807, z: -0.03799125}
+--- !u!114 &8918049949127513555
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8108897710735609707}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02dc700cf7fde444f8e90deffa982135, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  map: {fileID: 954090022}
+  zoomEffectVal: -1
 --- !u!95 &8932938806606825235
 Animator:
   serializedVersion: 5
