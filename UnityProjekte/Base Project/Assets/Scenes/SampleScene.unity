@@ -18567,6 +18567,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4911207460448613838}
+  - component: {fileID: 5720641930203361141}
   m_Layer: 0
   m_Name: ZoomPlus
   m_TagString: Untagged
@@ -18574,6 +18575,27 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!65 &5720641930203361141
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5720641930203361140}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2.8983343, y: 0.17480052, z: 2.9336152}
+  m_Center: {x: -0.045954805, y: 0.02721518, z: 0.0891545}
 --- !u!4 &5725087052907633102
 Transform:
   m_ObjectHideFlags: 0
@@ -23577,6 +23599,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8918049949127513553}
+  - component: {fileID: 8918049949127513554}
   m_Layer: 0
   m_Name: ZoomMinus
   m_TagString: Untagged
@@ -25293,6 +25316,27 @@ Transform:
   - {fileID: 7226193062419881828}
   m_Father: {fileID: 543450653417344572}
   m_LocalEulerAnglesHint: {x: 0, y: 45, z: 90}
+--- !u!65 &8918049949127513554
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8108897710735609707}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2.8911383, y: 0.16826725, z: 3.0161064}
+  m_Center: {x: 0.04693344, y: 0.006185807, z: -0.03799125}
 --- !u!95 &8932938806606825235
 Animator:
   serializedVersion: 5
