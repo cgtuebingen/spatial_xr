@@ -14,7 +14,6 @@ public class OSMRequest : MonoBehaviour
     //delta time
     private float delta = 0.0f;
     public WeatherGetter WeatherGetter;
-    public TouchPositionFinder world;
     private Vector3 firstPos;
     private Texture2DArray textures;
     private float offsetX = 0.0f;
@@ -36,7 +35,7 @@ public class OSMRequest : MonoBehaviour
         //initialize the cache
         cache = new TileCache();
         //initialize, then wait for click
-        gameObject.SetActive(false);
+
     }
 
     private void Update()
@@ -120,6 +119,9 @@ void GeoToTile(double lat, double lon, int zoom, out int tileX, out int tileY)
 
     public void UpdateTile(float newLat, float newLon, int newZoom = 7) 
     {
+        //reset offsets
+        offsetX = 0;
+        offsetY = 0;
         lat = newLat;
         lon = newLon;
         zoom = newZoom;
@@ -150,8 +152,6 @@ void GeoToTile(double lat, double lon, int zoom, out int tileX, out int tileY)
         Vector3 contactVector = firstPos - collisionPoint;
         if (contactVector.magnitude*deltaTime <= swipeSensitivity)
         {
-            gameObject.SetActive(false);
-            world.gameObject.SetActive(true);
             GeoToTile(lat, lon, zoom, out int x, out int y);
 
             float lonBottomLeft = tileToLon(x, zoom);
@@ -167,9 +167,7 @@ void GeoToTile(double lat, double lon, int zoom, out int tileX, out int tileY)
             float resLon = ((touch.x / 10f) + offsetX) * lonStep + lonBottomLeft;
             WeatherGetter.updateLocation(resLat, resLon);
 
-            //reset offsets
-            offsetX = 0;
-            offsetY = 0;
+
             
         }
         else
