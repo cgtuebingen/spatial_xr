@@ -8,8 +8,7 @@ public class TouchPositionFinder : MonoBehaviour
     public float coolDown = 0.0f;
     private void OnTriggerEnter(Collider other)
     {
-        gameObject.SetActive(false);
-        zoomMap.gameObject.SetActive(true);
+
         if(coolDown + 1.0f > Time.time) return;
         coolDown = Time.time;
         Vector3 collisionPoint = other.ClosestPoint(transform.position);
