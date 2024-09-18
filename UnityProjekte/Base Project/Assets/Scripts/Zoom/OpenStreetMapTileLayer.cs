@@ -28,7 +28,10 @@ public class OSMRequest : MonoBehaviour
     {
         mainMat = gameObject.GetComponent<Renderer>().material;
         textures = new Texture2DArray(256, 256, 9, TextureFormat.ARGB32, true);
-        
+        //placeholder so we show something
+        Texture2D nothingSelected = mainMat.mainTexture as Texture2D;
+        textures.SetPixels(nothingSelected.GetPixels(),4);
+        textures.Apply(true);
         mainMat.SetTexture("_MainTex", Texture2D.blackTexture);
         mainMat.SetTexture("_TexList", textures);
         velocity = new Vector2(0f, 0f);
