@@ -28,14 +28,11 @@ public class ClockController : MonoBehaviour
 void Update()
 {
     
-    if (!isTimeChangedManually)
-    {
-        UpdateClock();
-    }
-    else
+    if (isTimeChangedManually)
     { 
         
         KeepTimeInRange();
+      
     }
     
 }
@@ -92,7 +89,7 @@ void UpdateClock()
 
         if (int.Parse(monthTextFirst.text) < 0)
             {
-                monthTextSecond.text = "1";
+                monthTextFirst.text = "1";
             }
 
         if (int.Parse(monthTextSecond.text) < 0)

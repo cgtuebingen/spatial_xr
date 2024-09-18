@@ -4,15 +4,21 @@ using UnityEngine;
 using System;
 using System.Globalization;
 using TMPro;
+
+
 public class weatherConsumer : MonoBehaviour {
+
+
     [SerializeField] private float lat = 42.2f;
     [SerializeField] private float lon = 12.0f;
     [SerializeField] public string timeString = "";
+     public ClockController clockController; // Referenz auf ClockController.
+
     public DateTime time;
     public WeatherGetter weatherGetter;
     WeatherResult weather;
     bool printed = false;
-    // Start is called before the first frame update
+
     void Start() {
         
         //set random example location
@@ -28,18 +34,20 @@ public class weatherConsumer : MonoBehaviour {
         weatherGetter.updateLocationFromString("Tübingen");
     }
 
+    // Start is called before the first frame update
+    
+
     // Update is called once per frame
     void Update() {
 
         // Time will be updated if the date on the clock has been changed.
-        int Day = ConvertAndLogConcatenatedInt("first_day_digit", "second_day_digit");
-        int Month = ConvertAndLogConcatenatedInt("first_month_digit", "second_month_digit");
-        int Year = int.Parse("20" + ConvertAndLogConcatenatedInt("first_year_digit", "second_year_digit").ToString());
-        int Minute = ConvertAndLogConcatenatedInt("first_minute_digit", "second_minute_digit");
-        int Hour = ConvertAndLogConcatenatedInt("first_hour_digit", "second_hour_digit");
-
-
-        time = new DateTime(Year, Month, Day, Hour, Minute, 0);
+        int Day = ConvertAndLogConcatenatedInt("first_day_text", "second_day_text");
+        int Month = ConvertAndLogConcatenatedInt("first_month_text", "second_month_text");
+       
+        if (clockController.isTimeChangedManually == true) {
+        time = new DateTime(2024, Month, Day);
+         Debug.Log("time" + time);
+    
         weatherGetter.setRequestTime(time);
 
         WeatherGetter.Result<WeatherResult>? weather = weatherGetter.getWeather();
@@ -50,11 +58,12 @@ public class weatherConsumer : MonoBehaviour {
                 Debug.Log("Temp:" + weatherRes.value.temp);
                 Debug.Log(weatherRes.value.city);
                 printed = true;
+                clockController.isTimeChangedManually = false;
             }
         }
         else Debug.Log("Waiting for request");
 
-
+        }
         
     }
 
@@ -100,12 +109,12 @@ public class weatherConsumer : MonoBehaviour {
         {
             throw new Exception("Text konnte nicht zu Integer konvertiert werden: " + concatenatedText);
         }
-
+    //     Debug.Log("int value  " + intValue);
         return intValue;
     }
     catch (Exception ex)
     {
-        Debug.LogError("Fehler in ConvertAndLogConcatenatedInt: " + ex.Message);
+      Debug.LogError("Fehler in ConvertAndLogConcatenatedInt: " + ex.Message);
         
         throw; 
     }
