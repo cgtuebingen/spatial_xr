@@ -28,17 +28,13 @@ public class OSMRequest : MonoBehaviour
     {
         mainMat = gameObject.GetComponent<Renderer>().material;
         textures = new Texture2DArray(256, 256, 9, TextureFormat.ARGB32, true);
-        //placeholder so we show something
-        Texture2D nothingSelected = mainMat.mainTexture as Texture2D;
-        textures.SetPixels(nothingSelected.GetPixels(),4);
-        textures.Apply(true);
         mainMat.SetTexture("_MainTex", Texture2D.blackTexture);
         mainMat.SetTexture("_TexList", textures);
         velocity = new Vector2(0f, 0f);
         //initialize the cache
         cache = new TileCache();
         //initialize, then wait for click
-
+        gameObject.SetActive(false);
     }
 
     private void Update()
@@ -169,7 +165,8 @@ void GeoToTile(double lat, double lon, int zoom, out int tileX, out int tileY)
             float resLat = ((touch.z / 10f) + offsetY) * latStep + latBottomLeft;
             float resLon = ((touch.x / 10f) + offsetX) * lonStep + lonBottomLeft;
             WeatherGetter.updateLocation(resLat, resLon);
-
+            //hide on click
+            gameObject.SetActive(false);
 
             
         }
