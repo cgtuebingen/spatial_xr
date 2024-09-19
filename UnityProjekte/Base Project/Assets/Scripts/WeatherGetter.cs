@@ -20,6 +20,7 @@ public class WeatherGetter : MonoBehaviour
     //save the coordinates for update
     private Coords coords = null;
     private string city = "";
+    public string errorString = "";
     void Start()
     {
         requestTime = DateTime.Now;
@@ -27,6 +28,7 @@ public class WeatherGetter : MonoBehaviour
     }
     IEnumerator GetRequest(string url)
     {
+        Debug.Log(url);
         //using (UnityWebRequest www = UnityWebRequest.Get(baseURL+"&appid=" + apiKey +"&lat=" + lat + "&lon=" + lon ))
         using (UnityWebRequest www = UnityWebRequest.Get(url))
         {
@@ -39,6 +41,7 @@ public class WeatherGetter : MonoBehaviour
             else
             {
                 Debug.Log("Error: " + www.error);
+                errorString = www.error;
                 result = Result<string>.Error(www.error);
             }
         } // The using block ensures www.Dispose() is called when this block is exited
@@ -63,6 +66,7 @@ public class WeatherGetter : MonoBehaviour
             else
             {
                 Debug.Log("Error: " + www.error);
+                errorString = www.error;
                 result = Result<string>.Error(www.error);
             }
         } // The using block ensures www.Dispose() is called when this block is exited
@@ -80,12 +84,14 @@ public class WeatherGetter : MonoBehaviour
             {
                 OWMResult res = JsonUtility.FromJson<OWMResult>(www.downloadHandler.text);
                 this.city = res.name;
+                this.city = "asdf";
                 url = baseURLOPENM + "?latitude=" + lat + "&longitude=" + lon + "&hourly=temperature_2m,weather_code&start_date=" + requestTime.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture) + "&end_date=" + requestTime.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture);
                 StartCoroutine(GetRequest(url));
             }
             else
             {
                 Debug.Log("Error: " + www.error);
+                errorString = www.error;
                 result = Result<string>.Error(www.error);
             }
         } // The using block ensures www.Dispose() is called when this block is exited
@@ -125,7 +131,8 @@ public class WeatherGetter : MonoBehaviour
         string requestString = "";
         this.coords = new Coords(lat,lon);
         //We want the weather now (approx)
-        if (requestTime.Subtract(DateTime.Now).TotalHours <= 1)
+        Debug.Log(Math.Abs(requestTime.Subtract(DateTime.Now).TotalHours));
+        if (Math.Abs(requestTime.Subtract(DateTime.Now).TotalHours) <= 1)
         {
             requestString = baseURLOWM + apiKeyOWM + "&lat=" + lat + "&lon=" + lon;
             api = API.OPEN_WEATHER_MAP;
@@ -186,8 +193,6 @@ public class WeatherGetter : MonoBehaviour
            this.value = value;
             this.isOk = isOk;
         }
-
-
     }
     class Coords{
         public float lat;

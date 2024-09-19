@@ -38,10 +38,14 @@ public class exampleUIText : MonoBehaviour
         WeatherGetter.Result<WeatherResult>? weather = weatherGetter.getWeather();
         if (weather is WeatherGetter.Result<WeatherResult> weatherRes) {
             if(!weatherRes.isOk){
-                
+                cityText.text = "Fehler ..."; 
+                if (weatherGetter.errorString == "HTTP/1.1 400 Bad Request")
+                {
+                    cityText.text = "invalid date";
+                }
                 temperatureText.text = "";
                 friendlyNameText.text = "";
-                cityText.text = "Fehler ..."; 
+
                 activateVisualizationObject(null);
             }
             else{

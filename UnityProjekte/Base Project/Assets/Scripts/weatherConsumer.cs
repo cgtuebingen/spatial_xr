@@ -20,18 +20,7 @@ public class weatherConsumer : MonoBehaviour {
     bool printed = false;
 
     void Start() {
-        
-        //set random example location
 
-        if(timeString.Equals("")){
-            time = DateTime.Now;
-        }
-        else{
-            time = DateTime.ParseExact(timeString,"yyyy-MM-dd",CultureInfo.InvariantCulture);
-        }
-        weatherGetter.setRequestTime(time);
-        //weatherGetter.updateLocation(lat,lon);
-        weatherGetter.updateLocationFromString("Tübingen");
     }
 
     // Start is called before the first frame update
@@ -49,7 +38,7 @@ public class weatherConsumer : MonoBehaviour {
          Debug.Log("time" + time);
     
         weatherGetter.setRequestTime(time);
-
+        clockController.isTimeChangedManually = false;
         WeatherGetter.Result<WeatherResult>? weather = weatherGetter.getWeather();
         if (weather is WeatherGetter.Result<WeatherResult> weatherRes ) {
             if(!weatherRes.isOk) Debug.Log("Error");
@@ -58,10 +47,10 @@ public class weatherConsumer : MonoBehaviour {
                 Debug.Log("Temp:" + weatherRes.value.temp);
                 Debug.Log(weatherRes.value.city);
                 printed = true;
-                clockController.isTimeChangedManually = false;
+                
             }
         }
-        else Debug.Log("Waiting for request");
+        //else Debug.Log("Waiting for request");
 
         }
         
