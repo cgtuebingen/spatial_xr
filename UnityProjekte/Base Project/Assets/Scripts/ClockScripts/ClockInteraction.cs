@@ -8,6 +8,8 @@ public class TextMeshProComponentInitializationException : System.Exception
 
 public class ClockInteraction : MonoBehaviour
 {
+    public AudioSource clockTickSound;  // Referenz zur AudioSource für das Tick-Geräusch
+
     //temporäre Variablen um auf ClockController die Uhr zu aktualisieren, falls die Uhrzeit geändert wurde
     public TextMeshProUGUI yearTextFirstChange;
     public TextMeshProUGUI yearTextSecondChange;
@@ -18,10 +20,9 @@ public class ClockInteraction : MonoBehaviour
     public TextMeshProUGUI hourTextFirstChange;
     public TextMeshProUGUI hourTextSecondChange;
     public TextMeshProUGUI minuteTextFirstChange;
-
     public TextMeshProUGUI minuteTextSecondChange;
 
-   private Vector3 firstContactPoint; // Erster Kontaktpunkt bei der Kollision
+    private Vector3 firstContactPoint; // Erster Kontaktpunkt bei der Kollision
     private Vector3 lastContactPoint;  // Letzter Kontaktpunkt bei der Kollision
     private TextMeshProUGUI textMeshProComponent; // TextMeshPro-Komponente
     private int guiTextValue = 0; // Wert, der im TextMeshsPro angezeigt wird
@@ -31,12 +32,25 @@ public class ClockInteraction : MonoBehaviour
     public float targetHeightUP = 200f;
     public float targetHeightDown = 2000f;
 
-     private void OnTriggerEnter(Collider other){
+    private void Start()
+    {
+        // Falls die AudioSource nicht über den Editor zugewiesen wurde, versuche sie vom GameObject zu beziehen
+        if (clockTickSound == null)
+        {
+            clockTickSound = GetComponent<AudioSource>();
+        }
+    }
+
+    private void OnTriggerEnter(Collider other){
         firstContactPoint = other.transform.position;
     }
+
     private void OnTriggerExit(Collider other){
         lastContactPoint = other.transform.position;
         UpdateGUITextValue(firstContactPoint, lastContactPoint, ref guiTextValue, textMeshProComponent, clockController);
+
+        // Spiele den Tick-Sound ab, wenn sich eine Ziffer geändert hat
+        PlayClockTickSound();
     }
 
     void Update()
@@ -44,15 +58,12 @@ public class ClockInteraction : MonoBehaviour
         try
         {
             InitializeTextMeshProComponent();
-            
         }
         catch (TextMeshProComponentInitializationException ex)
         {
             Debug.LogError(ex.Message);
             guiTextValue = 0; // Setze den Default-Wert auf 0
         }
-
-        
     }
 
     void UpdateGUITextValue(Vector3 firstContactPoint, Vector3 lastContactPoint, ref int guiTextValue, TextMeshProUGUI textMeshProComponent, ClockController clockController)
@@ -95,51 +106,52 @@ public class ClockInteraction : MonoBehaviour
                 }
             }
 
-             // Aktualisiere den Text der TextMeshPro-Komponente mit dem neuen Wert
-                textMeshProComponent.text = guiTextValue.ToString();
-        switch (gameObject.name)
-        {
-            case "first_year_digit":
-                clockController.yearTextFirst = textMeshProComponent;
-                break;
-            case "second_year_digit":
-                clockController.yearTextSecond = textMeshProComponent;
-                break;
-            case "first_month_digit":
-                clockController.monthTextFirst = textMeshProComponent;
-                break;
-            case "second_month_digit":
-                clockController.monthTextSecond = textMeshProComponent;
-                break;
-            case "first_day_digit":
-                clockController.dayTextFirst = textMeshProComponent;
-                break;
-            case "second_day_digit":
-                clockController.dayTextSecond = textMeshProComponent;
-                break;
-            case "first_hour_digit":
-                clockController.hourTextFirst = textMeshProComponent;
-                break;
-            case "second_hour_digit":
-                clockController.hourTextSecond = textMeshProComponent;
-                break;
-            case "first_minute_digit":
-                clockController.minuteTextFirst = textMeshProComponent;
-                break;
-            case "second_minute_digit":
-                clockController.minuteTextSecond = textMeshProComponent;
-                break;
-            default:
-                Debug.Log(gameObject.name + " is NOT one of the specific GameObjects.");
-                break;
-        }
+            // Aktualisiere den Text der TextMeshPro-Komponente mit dem neuen Wert
+            textMeshProComponent.text = guiTextValue.ToString();
+            
+            // Weise den aktualisierten Wert der entsprechenden Komponente des ClockControllers zu
+            switch (gameObject.name)
+            {
+                case "first_year_digit":
+                    clockController.yearTextFirst = textMeshProComponent;
+                    break;
+                case "second_year_digit":
+                    clockController.yearTextSecond = textMeshProComponent;
+                    break;
+                case "first_month_digit":
+                    clockController.monthTextFirst = textMeshProComponent;
+                    break;
+                case "second_month_digit":
+                    clockController.monthTextSecond = textMeshProComponent;
+                    break;
+                case "first_day_digit":
+                    clockController.dayTextFirst = textMeshProComponent;
+                    break;
+                case "second_day_digit":
+                    clockController.dayTextSecond = textMeshProComponent;
+                    break;
+                case "first_hour_digit":
+                    clockController.hourTextFirst = textMeshProComponent;
+                    break;
+                case "second_hour_digit":
+                    clockController.hourTextSecond = textMeshProComponent;
+                    break;
+                case "first_minute_digit":
+                    clockController.minuteTextFirst = textMeshProComponent;
+                    break;
+                case "second_minute_digit":
+                    clockController.minuteTextSecond = textMeshProComponent;
+                    break;
+                default:
+                    Debug.Log(gameObject.name + " is NOT one of the specific GameObjects.");
+                    break;
+            }
         
-        clockController.isTimeChangedManually = true;
+            clockController.isTimeChangedManually = true;
 
             // Zurücksetzen der ContactPoints nach der Verarbeitung
             firstContactPoint = new Vector3(0,0,0);
             lastContactPoint = new Vector3(0,0,0);
-            //Debug.Log("Updated value: " + guiTextValue);
         }
     }
 
@@ -159,9 +171,14 @@ public class ClockInteraction : MonoBehaviour
         {
             throw new TextMeshProComponentInitializationException("Failed to parse initial TextMeshPro value to an integer. Defaulting to 0.");
         }
+    }
 
-        // Erfolgreich initialisiert
-        //Debug.Log("Initial value parsed: " + guiTextValue);
-                
+    // Funktion zum Abspielen des Tick-Sounds
+    void PlayClockTickSound()
+    {
+        if (clockTickSound != null)
+        {
+            clockTickSound.Play();
+        }
     }
 }
