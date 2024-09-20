@@ -3771,7 +3771,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47e4be0eace9801449be8b9f09953e98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  correction: 0
+  correction: 180
   weatherGetter: {fileID: 53049322}
   zoomMap: {fileID: 954090022}
   coolDown: 0

@@ -9,6 +9,7 @@
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/APIKey.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/APIKey.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Settings/Project Configuration/Standalone Balanced Preset.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Settings/Project Configuration/Standalone Balanced Preset.asset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Settings/Project Configuration/Standalone Performant Preset.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Settings/Project Configuration/Standalone Performant Preset.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/XR/Settings/Open XR Package Settings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/XR/Settings/Open XR Package Settings.asset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
