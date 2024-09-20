@@ -74,7 +74,7 @@ public class WeatherGetter : MonoBehaviour
     }
     IEnumerator GetRequestToOMBCoords(float lat, float lon)
     {
-        string url = baseURLOWM + apiKeyOWM + "&lat=" + lat + "&lon=" + lon;;
+        string url = baseURLOWM + apiKeyOWM + "&lat=" + lat.ToString("0.000000", CultureInfo.InvariantCulture) + "&lon=" + lon.ToString("0.000000", CultureInfo.InvariantCulture);;
         //using (UnityWebRequest www = UnityWebRequest.Get(baseURL+"&appid=" + apiKey +"&lat=" + lat + "&lon=" + lon ))
         using (UnityWebRequest www = UnityWebRequest.Get(url))
         {
@@ -84,7 +84,8 @@ public class WeatherGetter : MonoBehaviour
             {
                 OWMResult res = JsonUtility.FromJson<OWMResult>(www.downloadHandler.text);
                 this.city = res.name;
-                url = baseURLOPENM + "?latitude=" + lat + "&longitude=" + lon + "&hourly=temperature_2m,weather_code&start_date=" + requestTime.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture) + "&end_date=" + requestTime.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture);
+                Debug.Log(lat.ToString("0.000000", CultureInfo.InvariantCulture));
+                url = baseURLOPENM + "?latitude=" + lat.ToString("0.000000", CultureInfo.InvariantCulture) + "&longitude=" + lon.ToString("0.000000", CultureInfo.InvariantCulture) + "&hourly=temperature_2m,weather_code&start_date=" + requestTime.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture) + "&end_date=" + requestTime.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture);
                 StartCoroutine(GetRequest(url));
             }
             else
@@ -133,7 +134,7 @@ public class WeatherGetter : MonoBehaviour
         Debug.Log(Math.Abs(requestTime.Subtract(DateTime.Now).TotalHours));
         if (Math.Abs(requestTime.Subtract(DateTime.Now).TotalHours) <= 1)
         {
-            requestString = baseURLOWM + apiKeyOWM + "&lat=" + lat + "&lon=" + lon;
+            requestString = baseURLOWM + apiKeyOWM + "&lat=" + lat.ToString("0.000000", CultureInfo.InvariantCulture) + "&lon=" + lon.ToString("0.000000", CultureInfo.InvariantCulture);
             api = API.OPEN_WEATHER_MAP;
             Coroutine rout = StartCoroutine(GetRequest(requestString));
         }
