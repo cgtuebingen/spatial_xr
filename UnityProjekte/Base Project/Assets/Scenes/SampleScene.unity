@@ -2566,6 +2566,10 @@ PrefabInstance:
       propertyPath: clockController
       value: 
       objectReference: {fileID: 1471438136}
+    - target: {fileID: 773335948283947138, guid: e5ead8fd44a55594e89408001b2135b3, type: 3}
+      propertyPath: m_Name
+      value: second_month_text
+      objectReference: {fileID: 0}
     - target: {fileID: 1108022903963719203, guid: e5ead8fd44a55594e89408001b2135b3, type: 3}
       propertyPath: clockController
       value: 
