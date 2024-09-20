@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using System.Globalization;
+using System.Threading;
 using TMPro;
 
 
@@ -19,13 +20,6 @@ public class weatherConsumer : MonoBehaviour {
     WeatherResult weather;
     bool printed = false;
 
-    void Start() {
-
-    }
-
-    // Start is called before the first frame update
-    
-
     // Update is called once per frame
     void Update() {
 
@@ -33,24 +27,26 @@ public class weatherConsumer : MonoBehaviour {
         int Day = ConvertAndLogConcatenatedInt("first_day_text", "second_day_text");
         int Month = ConvertAndLogConcatenatedInt("first_month_text", "second_month_text");
        
-        if (clockController.isTimeChangedManually == true) {
-        time = new DateTime(2024, Month, Day);
-         Debug.Log("time" + time);
+        if (clockController.isTimeChangedManually == true)
+        {
+            //sleep to avoid too sensitiv input -> but kills performance... :(
+            //Thread.Sleep(500);
+            time = new DateTime(2024, Month, Day);
+            Debug.Log("time" + time);
     
-        weatherGetter.setRequestTime(time);
-        clockController.isTimeChangedManually = false;
-        WeatherGetter.Result<WeatherResult>? weather = weatherGetter.getWeather();
-        if (weather is WeatherGetter.Result<WeatherResult> weatherRes ) {
-            if(!weatherRes.isOk) Debug.Log("Error");
-            else if(!printed){
-                Debug.Log("Weather from ID:" + weatherRes.value.weatherType);
-                Debug.Log("Temp:" + weatherRes.value.temp);
-                Debug.Log(weatherRes.value.city);
-                printed = true;
-                
+            weatherGetter.setRequestTime(time);
+            clockController.isTimeChangedManually = false;
+            WeatherGetter.Result<WeatherResult>? weather = weatherGetter.getWeather();
+                if (weather is WeatherGetter.Result<WeatherResult> weatherRes ) {
+                    if(!weatherRes.isOk) Debug.Log("Error");
+                    else if(!printed){
+                        Debug.Log("Weather from ID:" + weatherRes.value.weatherType);
+                        Debug.Log("Temp:" + weatherRes.value.temp);
+                        Debug.Log(weatherRes.value.city);
+                        printed = true;
+                }
             }
-        }
-        //else Debug.Log("Waiting for request");
+            //else Debug.Log("Waiting for request");
 
         }
         

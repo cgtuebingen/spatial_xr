@@ -27,14 +27,8 @@ public class ClockController : MonoBehaviour
 
 void Update()
 {
-    
-    if (isTimeChangedManually)
-    { 
-        
-        KeepTimeInRange();
-      
-    }
-    
+    //Should keep the time away from impossible dates!
+    KeepTimeInRange();
 }
 
 void UpdateClock()
