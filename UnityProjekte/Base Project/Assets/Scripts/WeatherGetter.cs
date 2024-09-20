@@ -84,7 +84,6 @@ public class WeatherGetter : MonoBehaviour
             {
                 OWMResult res = JsonUtility.FromJson<OWMResult>(www.downloadHandler.text);
                 this.city = res.name;
-                this.city = "asdf";
                 url = baseURLOPENM + "?latitude=" + lat + "&longitude=" + lon + "&hourly=temperature_2m,weather_code&start_date=" + requestTime.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture) + "&end_date=" + requestTime.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture);
                 StartCoroutine(GetRequest(url));
             }
