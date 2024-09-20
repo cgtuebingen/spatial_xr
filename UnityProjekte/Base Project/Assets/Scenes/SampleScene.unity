@@ -162,6 +162,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b60a4bb5ab9d05b459b1c98db6459a81, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  errorString: 
 --- !u!4 &53049323
 Transform:
   m_ObjectHideFlags: 0
@@ -603,6 +604,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &491511266 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6990258095737226415, guid: e5ead8fd44a55594e89408001b2135b3, type: 3}
+  m_PrefabInstance: {fileID: 1241364534}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &602244783 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1763525068765648906, guid: e5ead8fd44a55594e89408001b2135b3, type: 3}
@@ -2560,6 +2566,10 @@ PrefabInstance:
       propertyPath: clockController
       value: 
       objectReference: {fileID: 1471438136}
+    - target: {fileID: 773335948283947138, guid: e5ead8fd44a55594e89408001b2135b3, type: 3}
+      propertyPath: m_Name
+      value: second_month_text
+      objectReference: {fileID: 0}
     - target: {fileID: 1108022903963719203, guid: e5ead8fd44a55594e89408001b2135b3, type: 3}
       propertyPath: clockController
       value: 
@@ -2787,6 +2797,9 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1587903129}
     m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6990258095737226415, guid: e5ead8fd44a55594e89408001b2135b3, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1471438137}
     - targetCorrespondingSourceObject: {fileID: 7548681210245083331, guid: e5ead8fd44a55594e89408001b2135b3, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1241364550}
@@ -3858,7 +3871,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3828260564393779383, guid: e5ead8fd44a55594e89408001b2135b3, type: 3}
   m_PrefabInstance: {fileID: 1241364534}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 491511266}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 41db20b9bbe32364491f43526138b4f4, type: 3}
@@ -3869,12 +3882,29 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4799805552773886840, guid: e5ead8fd44a55594e89408001b2135b3, type: 3}
   m_PrefabInstance: {fileID: 1241364534}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 491511266}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b4d2a57721a4adb4d88b04f2535bce86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1471438137
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 491511266}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f40031af02a4efb4fb6b05a3fb86a687, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lat: 42.2
+  lon: 12
+  timeString: 
+  clockController: {fileID: 1471438136}
+  weatherGetter: {fileID: 53049322}
 --- !u!1 &1497861005
 GameObject:
   m_ObjectHideFlags: 0
