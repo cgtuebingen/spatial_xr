@@ -989,7 +989,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1382179640964178956, guid: 03c032757eb5fcf40b30f48ed831f8fc, type: 3}
       propertyPath: swipeSensitivity
-      value: 0.5
+      value: 0.8
       objectReference: {fileID: 0}
     - target: {fileID: 4477400166727630927, guid: 03c032757eb5fcf40b30f48ed831f8fc, type: 3}
       propertyPath: m_LocalScale.x

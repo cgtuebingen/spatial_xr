@@ -44,7 +44,7 @@ Library: C:\Users\Gamer\Documents\SpatialXR\spatial_xr\UnityProjekte\Base Projec
 --assembly-defines=UnityEngine;
 --generate-link-xml=Temp\burst.link.xml
 --temp-folder=C:\Users\Gamer\Documents\SpatialXR\spatial_xr\UnityProjekte\Base Project\Temp\Burst
---key-folder=P:/Unity3D/2022.3.30f1/Editor/Data/PlaybackEngines/AndroidPlayer
+--key-folder=C:/Program Files/Unity/Hub/Editor/2022.3.30f1/Editor/Data/PlaybackEngines/AndroidPlayer
 --decode-folder=C:\Users\Gamer\Documents\SpatialXR\spatial_xr\UnityProjekte\Base Project\Library\Burst
 --output=C:\Users\Gamer\Documents\SpatialXR\spatial_xr\UnityProjekte\Base Project\Temp\BurstOutput\tempburstlibs\arm64-v8a\lib_burst_generated
 --pdb-search-paths=Temp/ManagedSymbols/
@@ -170,7 +170,7 @@ Library: C:\Users\Gamer\Documents\SpatialXR\spatial_xr\UnityProjekte\Base Projec
 --assembly-defines=UnityEngine;
 --generate-link-xml=Temp\burst.link.xml
 --temp-folder=C:\Users\Gamer\Documents\SpatialXR\spatial_xr\UnityProjekte\Base Project\Temp\Burst
---key-folder=P:/Unity3D/2022.3.30f1/Editor/Data/PlaybackEngines/AndroidPlayer
+--key-folder=C:/Program Files/Unity/Hub/Editor/2022.3.30f1/Editor/Data/PlaybackEngines/AndroidPlayer
 --decode-folder=C:\Users\Gamer\Documents\SpatialXR\spatial_xr\UnityProjekte\Base Project\Library\Burst
 --output=C:\Users\Gamer\Documents\SpatialXR\spatial_xr\UnityProjekte\Base Project\Temp\BurstOutput\tempburstlibs\arm64-v8a\lib_burst_generated
 --pdb-search-paths=Temp/ManagedSymbols/

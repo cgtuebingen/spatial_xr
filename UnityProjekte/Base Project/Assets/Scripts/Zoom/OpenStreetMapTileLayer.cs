@@ -3,6 +3,9 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Networking;
 using System.Collections;
+using UnityEngine.XR.Hands;
+using UnityEngine.XR.Interaction.Toolkit;
+using UnityEngine.XR;
 
 public class OSMRequest : MonoBehaviour
 {
@@ -140,7 +143,9 @@ void GeoToTile(double lat, double lon, int zoom, out int tileX, out int tileY)
 
     private void OnTriggerExit(Collider other)
     {
-        
+
+        Debug.Log(other.name);
+
         if(coolDown + 0.3f > Time.time) return;
         coolDown = Time.time;
         float deltaTime = (Time.time - delta);
@@ -149,7 +154,23 @@ void GeoToTile(double lat, double lon, int zoom, out int tileX, out int tileY)
 
         //swipe detection, a swipe covers a long distance in short time
         Vector3 contactVector = firstPos - collisionPoint;
-        if (contactVector.magnitude*deltaTime <= swipeSensitivity)
+
+        //check if hand-tracking is enabled:
+        //if (InputDeviceCharacteristics.) { 
+        //}
+        float swipeSens = 0;
+        //kid named finger
+        if(other.name.Equals("Capsule Collider Proximal"))
+        {
+            swipeSens = 1f;
+
+        }
+        //controller    
+        else
+        {
+            swipeSens = 2f;
+        }
+        if (contactVector.magnitude <= swipeSens)
         {
             GeoToTile(lat, lon, zoom, out int x, out int y);
 
@@ -172,7 +193,7 @@ void GeoToTile(double lat, double lon, int zoom, out int tileX, out int tileY)
         }
         else
         {
-            Debug.Log(contactVector.magnitude*deltaTime);
+            Debug.Log(contactVector.magnitude);
             velocity =  new Vector2(contactVector.x, contactVector.z) * -swipeVelocity/deltaTime;
         }
         
@@ -212,5 +233,7 @@ void GeoToTile(double lat, double lon, int zoom, out int tileX, out int tileY)
         latBottomLeft = (Mathf.Atan((float)Math.Sinh(latBottomLeft))/(2*Mathf.PI))*360;
         return latBottomLeft;
     }
+
+
     
 }
