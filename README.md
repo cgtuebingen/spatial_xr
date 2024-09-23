@@ -25,6 +25,7 @@ Say goodbye to flat, uninspiring weather apps and embrace a new era of immersive
 
 - **Operating Systems**: Windows, Linux, MacOS (with Meta Quest support)
 - **Hardware**: Any headset from the Quest Series
+- **API Key**: Your own API Key for [OpenWeatherMap](https://openweathermap.org/)
 
 For detailed installation instructions, please visit our [Wiki](https://github.com/cgtuebingen/spatial_xr/wiki).
 
