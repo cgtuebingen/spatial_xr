@@ -1,0 +1,88 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Gamer\\Documents\\SpatialXR\\spatial_xr\\UnityProjekte\\Base Project\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{CC21A087-3941-95F7-5D56-26ED56BF4E13}|Assembly-CSharp.csproj|c:\\users\\gamer\\documents\\spatialxr\\spatial_xr\\unityprojekte\\base project\\assets\\scripts\\apikey.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CC21A087-3941-95F7-5D56-26ED56BF4E13}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\apikey.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CC21A087-3941-95F7-5D56-26ED56BF4E13}|Assembly-CSharp.csproj|c:\\users\\gamer\\documents\\spatialxr\\spatial_xr\\unityprojekte\\base project\\assets\\scripts\\zoom\\openstreetmaptilelayer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CC21A087-3941-95F7-5D56-26ED56BF4E13}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\zoom\\openstreetmaptilelayer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CC21A087-3941-95F7-5D56-26ED56BF4E13}|Assembly-CSharp.csproj|c:\\users\\gamer\\documents\\spatialxr\\spatial_xr\\unityprojekte\\base project\\assets\\scripts\\clockscripts\\clockcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CC21A087-3941-95F7-5D56-26ED56BF4E13}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\clockscripts\\clockcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CC21A087-3941-95F7-5D56-26ED56BF4E13}|Assembly-CSharp.csproj|c:\\users\\gamer\\documents\\spatialxr\\spatial_xr\\unityprojekte\\base project\\assets\\scripts\\clockscripts\\clockinteraction.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CC21A087-3941-95F7-5D56-26ED56BF4E13}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\clockscripts\\clockinteraction.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "APIKey.cs",
+              "DocumentMoniker": "C:\\Users\\Gamer\\Documents\\SpatialXR\\spatial_xr\\UnityProjekte\\Base Project\\Assets\\Scripts\\APIKey.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\APIKey.cs",
+              "ToolTip": "C:\\Users\\Gamer\\Documents\\SpatialXR\\spatial_xr\\UnityProjekte\\Base Project\\Assets\\Scripts\\APIKey.cs",
+              "RelativeToolTip": "Assets\\Scripts\\APIKey.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAAjAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-22T14:46:39.581Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "OpenStreetMapTileLayer.cs",
+              "DocumentMoniker": "C:\\Users\\Gamer\\Documents\\SpatialXR\\spatial_xr\\UnityProjekte\\Base Project\\Assets\\Scripts\\Zoom\\OpenStreetMapTileLayer.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Zoom\\OpenStreetMapTileLayer.cs",
+              "ToolTip": "C:\\Users\\Gamer\\Documents\\SpatialXR\\spatial_xr\\UnityProjekte\\Base Project\\Assets\\Scripts\\Zoom\\OpenStreetMapTileLayer.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Zoom\\OpenStreetMapTileLayer.cs",
+              "ViewState": "AQIAAJYAAAAAAAAAAAAmwKcAAAAYAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-22T12:50:08.142Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ClockController.cs",
+              "DocumentMoniker": "C:\\Users\\Gamer\\Documents\\SpatialXR\\spatial_xr\\UnityProjekte\\Base Project\\Assets\\Scripts\\ClockScripts\\ClockController.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\ClockScripts\\ClockController.cs",
+              "ToolTip": "C:\\Users\\Gamer\\Documents\\SpatialXR\\spatial_xr\\UnityProjekte\\Base Project\\Assets\\Scripts\\ClockScripts\\ClockController.cs",
+              "RelativeToolTip": "Assets\\Scripts\\ClockScripts\\ClockController.cs",
+              "ViewState": "AQIAAIIAAAAAAAAAAAAkwFwAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-22T12:28:55.84Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "ClockInteraction.cs",
+              "DocumentMoniker": "C:\\Users\\Gamer\\Documents\\SpatialXR\\spatial_xr\\UnityProjekte\\Base Project\\Assets\\Scripts\\ClockScripts\\ClockInteraction.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\ClockScripts\\ClockInteraction.cs",
+              "ToolTip": "C:\\Users\\Gamer\\Documents\\SpatialXR\\spatial_xr\\UnityProjekte\\Base Project\\Assets\\Scripts\\ClockScripts\\ClockInteraction.cs",
+              "RelativeToolTip": "Assets\\Scripts\\ClockScripts\\ClockInteraction.cs",
+              "ViewState": "AQIAADsAAAAAAAAAAAAswAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-22T12:28:46.943Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
