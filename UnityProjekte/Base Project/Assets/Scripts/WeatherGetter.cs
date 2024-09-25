@@ -23,9 +23,10 @@ public class WeatherGetter : MonoBehaviour
     public string errorString = "";
     void Start()
     {
+        //request for now
         requestTime = DateTime.Now;
-        requestTime = DateTime.Parse("2024-06-28",  null, System.Globalization.DateTimeStyles.RoundtripKind);
     }
+    //just a simple Get Request
     IEnumerator GetRequest(string url)
     {
         //using (UnityWebRequest www = UnityWebRequest.Get(baseURL+"&appid=" + apiKey +"&lat=" + lat + "&lon=" + lon ))
@@ -71,6 +72,7 @@ public class WeatherGetter : MonoBehaviour
         } // The using block ensures www.Dispose() is called when this block is exited
 
     }
+    //get Request to OWM by coordinates for geocoding. Continue by a request to Open Meteo
     IEnumerator GetRequestToOMBCoords(float lat, float lon)
     {
         string url = baseURLOWM + apiKeyOWM + "&lat=" + lat.ToString("0.000000", CultureInfo.InvariantCulture) + "&lon=" + lon.ToString("0.000000", CultureInfo.InvariantCulture);
@@ -98,11 +100,11 @@ public class WeatherGetter : MonoBehaviour
     // this will return the current weather if something was requested. Otherwise it will continue return null, unless something arrives
     public Result<WeatherResult>? getWeather()
     {
+        //not done
         if (result == null) return null;
-        //Debug.Log(result.Value.value);
+        //Error
         if (!result.Value.isOk) return Result<WeatherResult>.Error(null);
-    
-
+        //parse using the right API
         switch (api){
             case API.OPEN_WEATHER_MAP:
                 OWMResult res = JsonUtility.FromJson<OWMResult>(result?.value);
@@ -137,12 +139,10 @@ public class WeatherGetter : MonoBehaviour
         }
         else
         {
-
             //requestString = baseURLOPENM + "?latitude=" + lat + "&longitude=" + lon + "&hourly=temperature_2m,weather_code&start_date=" + requestTime.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture) + "&end_date=" + requestTime.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture);
             api = API.OPEN_METEO;
             StartCoroutine(GetRequestToOMBCoords(lat,lon));
         }
-        //Debug.Log(requestString);
     }
     //same as updateLocation, but with a string instead of coordinates, expects sanitized input
     public void updateLocationFromString(string city)
@@ -161,13 +161,13 @@ public class WeatherGetter : MonoBehaviour
         }
         else
         {
-            Debug.Log("forecast");
             Coroutine rout = StartCoroutine(GetRequestToOMByCity(city));
         }
 
 
 
     }
+    //Redo the current request
     public void update(){
         if(coords != null) updateLocation(coords.lat,coords.lon);
     }
@@ -176,10 +176,12 @@ public class WeatherGetter : MonoBehaviour
         requestTime = date;
         update();
     }
+    //we currently only use those two APIs
     enum API
     {
         OPEN_WEATHER_MAP, OPEN_METEO
     }
+    //C# does not have a result type. This why we do this
     public struct Result<T>{
         public static Result<T> Error(T value) => new Result<T>(value,false);
         public static Result<T> Ok(T value) => new Result<T>(value,true);
@@ -193,6 +195,7 @@ public class WeatherGetter : MonoBehaviour
 
 
     }
+    //Make coordinates nicer by using a simple object
     class Coords{
         public float lat;
         public float lon;

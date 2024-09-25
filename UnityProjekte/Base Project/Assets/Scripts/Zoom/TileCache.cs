@@ -9,6 +9,7 @@ public class TileCache
 
     public TileCache()
     {
+        //create an array with lists
         table = new List<TileCacheEntry>[TABLE_SIZE];
         for (int i = 0; i < TABLE_SIZE; i++)
         {
@@ -23,11 +24,9 @@ public class TileCache
         {
             if (entry.x == x && entry.y == y && entry.z == z)
             {
-                //Debug.Log("hit");
                 return entry.value;
             }
         }
-        //Debug.Log("miss");
         return null;
     }
     //add something to the cache
@@ -36,7 +35,7 @@ public class TileCache
         TileCacheEntry entry = new TileCacheEntry(x, y, z, tile);
         table[entry.hashCode(TABLE_SIZE)].Add(entry);
     }
-    
+    //naive hash function
     private int hashCode(int x,int y, int z)
     {
         int prime1 = 73856093;

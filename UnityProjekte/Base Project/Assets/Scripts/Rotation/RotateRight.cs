@@ -6,19 +6,7 @@ using UnityEngine;
 public class RotateRight : MonoBehaviour
 {
     public GameObject toRotate;
- 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
- 
     /*
      *Functions which rotates the specified Object while Collider is entered (right)
      */

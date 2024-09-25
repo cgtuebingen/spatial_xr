@@ -7,22 +7,11 @@ public class Search : MonoBehaviour
 {
     public WeatherGetter weatherGetter;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-
-       
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
+    //this gets run on "enter"
     public void submit(){
         weatherGetter.updateLocationFromString(GlobalNonNativeKeyboard.instance.keyboard.text);
-        Debug.Log(GlobalNonNativeKeyboard.instance.keyboard.text);
     }
+    //show the keyboard on "click"
     void OnTriggerEnter(){
         GlobalNonNativeKeyboard.instance.ShowKeyboard();
     }
