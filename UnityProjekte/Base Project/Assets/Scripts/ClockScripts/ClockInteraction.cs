@@ -6,7 +6,7 @@ using System; // Fügt den Namespace hinzu, der DateTime enthält
 public enum DeltaType
 {
     HOUR,
-    DAY
+    DAY,
 }
 
 public class TextMeshProComponentInitializationException : System.Exception
@@ -53,19 +53,19 @@ public class ClockInteraction : MonoBehaviour
 
         // Tupel delta berechnen, gibt zurück, ob Stunde oder Tag verändert werden soll, und um wie viel
         var delta = UpdateGUITextValue(firstContactPoint, lastContactPoint, ref guiTextValue, textMeshProComponent, clockController);
-
+        Debug.Log(oldDate);
         if (delta.Item2 == DeltaType.DAY)
         {
             updatedDate = DateInFuture(oldDate, delta.Item1, 0); // Tage dem neuen Datum hinzufügen
-            clockController.dayTextSecond = SetDatePartInTextMesh(updatedDate.ToString("yyyy-MM-dd HH:mm"), "day", tempMash);
-            clockController.monthTextSecond = SetDatePartInTextMesh(updatedDate.ToString("yyyy-MM-dd HH:mm"), "month", tempMash);
-            clockController.yearTextSecond = SetDatePartInTextMesh(updatedDate.ToString("yyyy-MM-dd HH:mm"), "year", tempMash);
+            clockController.dayTextSecond = SetDatePartInTextMesh(updatedDate.ToString("yyyy-MM-dd HH:mm"), "day", clockController.dayTextSecond);
+            clockController.monthTextSecond = SetDatePartInTextMesh(updatedDate.ToString("yyyy-MM-dd HH:mm"), "month", clockController.monthTextSecond);
+            clockController.yearTextSecond = SetDatePartInTextMesh(updatedDate.ToString("yyyy-MM-dd HH:mm"), "year", clockController.yearTextSecond);
 
         }
         else if (delta.Item2 == DeltaType.HOUR)
         {
             updatedDate = DateInFuture(oldDate, 0, delta.Item1); // Stunden dem neuen Datum hinzufügen
-            clockController.hourTextSecond = SetDatePartInTextMesh(updatedDate.ToString("yyyy-MM-dd HH:mm"), "hour", tempMash);
+            clockController.hourTextSecond = SetDatePartInTextMesh(updatedDate.ToString("yyyy-MM-dd HH:mm"), "hour", clockController.hourTextSecond);
         }
 
         clockController.isTimeChangedManually = true;
@@ -111,8 +111,10 @@ public class ClockInteraction : MonoBehaviour
         {
             component = DeltaType.DAY;
         }
+
         else
         {
+            Debug.LogError("Invalid Name, change me!!");
             component = DeltaType.HOUR; // Fallback, sollte nicht passieren
         }
 
@@ -172,7 +174,7 @@ public class ClockInteraction : MonoBehaviour
         // Versuche, den initialen Textinhalt in eine Ganzzahl zu konvertieren
         if (!int.TryParse(textMeshProComponent.text, out guiTextValue))
         {
-            throw new TextMeshProComponentInitializationException("Failed to parse initial TextMeshPro value to an integer. Defaulting to 0.");
+            throw new TextMeshProComponentInitializationException("Failed to parse initial TextMeshPro value to an integer. Defaulting to 0. Val is: " + textMeshProComponent.text);
         }
     }
 
@@ -214,21 +216,20 @@ public class ClockInteraction : MonoBehaviour
     public TextMeshProUGUI SetDatePartInTextMesh(string dateTimeString, string datePart, TextMeshProUGUI textMeshPro)
     {
         DateTime date = DateTime.Parse(dateTimeString);
-
         // Basierend auf dem angeforderten Datums- oder Zeitteil (day, hour, year, month) wird der Text der TextMeshPro-Komponente gesetzt
         switch (datePart)
         {
             case "day":
-                textMeshPro.text = dateTimeString.Day.ToString();
+                textMeshPro.text = date.Day.ToString();
                 break;
             case "hour":
-                textMeshPro.text = dateTimeString.Hour.ToString();
+                textMeshPro.text = date.Hour.ToString();
                 break;
             case "year":
-                textMeshPro.text = dateTimeStringdate.Year.ToString();
+                textMeshPro.text = date.Year.ToString();
                 break;
             case "month":
-                textMeshPro.text = dateTimeString.Month.ToString();
+                textMeshPro.text = date.Month.ToString();
                 break;
             default:
                 Debug.LogWarning("Ungültiger datePart: " + datePart);
