@@ -23,7 +23,7 @@ Say goodbye to flat, uninspiring weather apps and embrace a new era of immersive
 
 ### Requirements
 
-- **Operating Systems**: Windows, Linux, MacOS (with Meta Quest support)
+- **Operating Systems**: Android (Meta Quest)
 - **Hardware**: Any headset from the Quest Series
 - **API Key**: Your own API Key for [OpenWeatherMap](https://openweathermap.org/)
 
