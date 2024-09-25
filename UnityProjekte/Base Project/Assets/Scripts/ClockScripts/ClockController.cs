@@ -4,52 +4,51 @@ using System;
 
 public class ClockController : MonoBehaviour
 {
-    public TextMeshProUGUI yearTextFirst;
     public TextMeshProUGUI yearTextSecond;
-    public TextMeshProUGUI monthTextFirst;
     public TextMeshProUGUI monthTextSecond;
-    public TextMeshProUGUI dayTextFirst;
     public TextMeshProUGUI dayTextSecond;
-    public TextMeshProUGUI hourTextFirst;
     public TextMeshProUGUI hourTextSecond;
-    public TextMeshProUGUI minuteTextFirst;
     public TextMeshProUGUI minuteTextSecond;
 
     public ClockInteraction clockInteraction;
-
     public bool isTimeChangedManually = false;
 
+    private DateTime lastUpdateTime;
+
     void Start()
-{
-    UpdateClock();
-    
-}
+    {
+        // Setze die letzte Update-Zeit auf den aktuellen Zeitpunkt
+        lastUpdateTime = DateTime.Now;
+        UpdateClock();
+    }
 
-void Update()
-{
-    //Should keep the time away from impossible dates!
-    KeepTimeInRange();
-}
+    void Update()
+    {
+        // Überprüfen, ob eine Minute seit dem letzten Update vergangen ist
+        if ((DateTime.Now - lastUpdateTime).TotalMinutes >= 1)
+        {
+            UpdateClock();
+            lastUpdateTime = DateTime.Now;  // Setze die letzte Update-Zeit auf jetzt
+        }
 
-void UpdateClock()
-{
-    DateTime now = DateTime.Now;
+        
+    }
 
-    
-        yearTextFirst.text = (now.Year / 10 % 10).ToString();
-        yearTextSecond.text = ((now.Year % 1000) % 10).ToString();
-        monthTextFirst.text = (now.Month / 10).ToString();
-        monthTextSecond.text = (now.Month % 10).ToString();
-        dayTextFirst.text = (now.Day / 10).ToString();
-        dayTextSecond.text = (now.Day % 10).ToString();
-        hourTextFirst.text = (now.Hour / 10).ToString();
-        hourTextSecond.text = (now.Hour % 10).ToString();
-        minuteTextFirst.text = (now.Minute / 10).ToString();
-        minuteTextSecond.text = (now.Minute % 10).ToString();
+    void UpdateClock()
+    {
+        DateTime now = DateTime.Now;
 
-    
-    
-}
+        // Aktualisiere die Textfelder mit dem aktuellen Datum und der Uhrzeit
+        yearTextSecond.text = now.Year.ToString();
+        monthTextSecond.text = now.Month.ToString();
+        dayTextSecond.text = now.Day.ToString();
+        hourTextSecond.text = now.Hour.ToString();
+        minuteTextSecond.text = now.Minute.ToString();
+
+        Debug.Log("Uhr aktualisiert: " + now.ToString("yyyy-MM-dd HH:mm"));
+    }
+   
+   /*
     void KeepTimeInRange()
     {
         // Keep year values between 0 and 9
@@ -163,4 +162,6 @@ void UpdateClock()
 
 
     }
+
+    */
 }
