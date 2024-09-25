@@ -2520,7 +2520,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2978587466658337956, guid: e5ead8fd44a55594e89408001b2135b3, type: 3}
       propertyPath: m_fontStyle
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2978587466658337956, guid: e5ead8fd44a55594e89408001b2135b3, type: 3}
       propertyPath: m_fontSizeBase
@@ -2713,6 +2713,10 @@ PrefabInstance:
     - target: {fileID: 4613729108961944200, guid: e5ead8fd44a55594e89408001b2135b3, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.975
+      objectReference: {fileID: 0}
+    - target: {fileID: 4613729108961944200, guid: e5ead8fd44a55594e89408001b2135b3, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.0012
       objectReference: {fileID: 0}
     - target: {fileID: 4790556816700368651, guid: e5ead8fd44a55594e89408001b2135b3, type: 3}
       propertyPath: tempMash

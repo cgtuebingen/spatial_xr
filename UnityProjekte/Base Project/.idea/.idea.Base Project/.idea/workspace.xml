@@ -5,9 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8144ff02-fef5-491a-a423-e41a7e38cef2" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Base Project/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Base Project/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/ClockScripts/ClockController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/ClockScripts/ClockController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/weatherConsumer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/weatherConsumer.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Settings/Project Configuration/Standalone Balanced Preset.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Settings/Project Configuration/Standalone Balanced Preset.asset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Settings/Project Configuration/Standalone Performant Preset.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Settings/Project Configuration/Standalone Performant Preset.asset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/XR/Settings/Open XR Package Settings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/XR/Settings/Open XR Package Settings.asset" afterDir="false" />
@@ -159,6 +157,7 @@
       <workItem from="1726857166927" duration="275000" />
       <workItem from="1726857707124" duration="137000" />
       <workItem from="1726858107588" duration="17000" />
+      <workItem from="1727297446645" duration="575000" />
     </task>
     <servers />
   </component>
