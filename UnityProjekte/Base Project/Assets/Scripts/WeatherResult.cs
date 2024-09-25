@@ -1,8 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
-//using Unity.VisualScripting;
-using UnityEngine;
 
+using UnityEngine;
+//abstact class for the weather result
 public abstract class WeatherResult {
 
     //Default Data
@@ -15,7 +15,7 @@ public abstract class WeatherResult {
         this.weatherType = id;
         this.city = city;
     }
-
+    //could be expanded, for adding new visualizations
     public enum WeatherType{
         SUN,RAIN,SNOW,CLOUDS,THUNDERSTORM
     }

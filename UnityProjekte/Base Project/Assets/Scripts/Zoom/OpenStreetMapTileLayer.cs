@@ -6,7 +6,7 @@ using System.Collections;
 using UnityEngine.XR.Hands;
 using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.XR;
-
+//Request to OpenStreetMap
 public class OSMRequest : MonoBehaviour
 {
     public float lat; // Breitengrad
@@ -14,8 +14,6 @@ public class OSMRequest : MonoBehaviour
     public int zoom = 1;
     private string urlTemplate = "https://tile.openstreetmap.org/{z}/{x}/{y}.png";
     private float coolDown = 0.0f;
-    //delta time
-    private float delta = 0.0f;
     public WeatherGetter WeatherGetter;
     private Vector3 firstPos;
     private Texture2DArray textures;
@@ -27,6 +25,8 @@ public class OSMRequest : MonoBehaviour
     public float swipeVelocity = 0.2f;
     private TileCache cache;
     private float zoomOffset = 1.0f;
+    //tracks the time between entry and exit of finger (for velocity)
+    private float delta = 0.0f;
     void Start()
     {
         mainMat = gameObject.GetComponent<Renderer>().material;
@@ -42,17 +42,22 @@ public class OSMRequest : MonoBehaviour
 
     private void Update()
     {
+        //apply velocity
         offsetX += velocity.x;
         offsetY += velocity.y;
+        //apply zoom, gradually slow down zooom by mean
         zoomOffset = (zoomOffset + 0.1f)/1.1f;
+        //clamp
         offsetX = Mathf.Clamp(offsetX, -1, 1);
         offsetY = Mathf.Clamp(offsetY, -1, 1);
+        //send to gpu
         mainMat.SetFloat("_OffsetX",offsetX);
         mainMat.SetFloat("_OffsetY",offsetY);
         mainMat.SetFloat("_ZoomOffset", zoomOffset);
+        //slow down velocity
         velocity = velocity * 0.95f;
     }
-
+    //Load a specific tile into a slot in the texture list
     IEnumerator LoadTile(int offsetTileIndex)
     {
         // Umrechnung der geografischen Koordinaten in Kachelkoordinaten
@@ -111,14 +116,14 @@ public class OSMRequest : MonoBehaviour
             }
         }
     }
-
-void GeoToTile(double lat, double lon, int zoom, out int tileX, out int tileY)
-{
-    double latRad = lat * Math.PI / 180.0;
-    tileX = (int)((lon + 180.0) / 360.0 * (1 << zoom));
-    tileY = (int)((1.0 - Math.Log(Math.Tan(latRad) + 1.0 / Math.Cos(latRad)) / Math.PI) / 2.0 * (1 << zoom));
-}
-
+//convert coordinates to tile
+    void GeoToTile(double lat, double lon, int zoom, out int tileX, out int tileY)
+    {
+        double latRad = lat * Math.PI / 180.0;
+        tileX = (int)((lon + 180.0) / 360.0 * (1 << zoom));
+        tileY = (int)((1.0 - Math.Log(Math.Tan(latRad) + 1.0 / Math.Cos(latRad)) / Math.PI) / 2.0 * (1 << zoom));
+    }
+    //change new center
     public void UpdateTile(float newLat, float newLon, int newZoom = 7) 
     {
         //reset offsets
@@ -133,33 +138,25 @@ void GeoToTile(double lat, double lon, int zoom, out int tileX, out int tileY)
         }
     }
 
-
+    //Set first point
     private void OnTriggerEnter(Collider other)
     {
+        delta = Time.time;
         Vector3 collisionPoint = transform.InverseTransformPoint(other.transform.position);
         firstPos = collisionPoint;
-        delta = Time.time;
     }
-
+    //react to swipe/poke
     private void OnTriggerExit(Collider other)
     {
-
-        Debug.Log(other.name);
-
         if(coolDown + 0.3f > Time.time) return;
         coolDown = Time.time;
-        float deltaTime = (Time.time - delta);
         Vector3 collisionPoint = transform.InverseTransformPoint(other.transform.position);
-            //other.ClosestPoint(transform.position);
-
-        //swipe detection, a swipe covers a long distance in short time
+        float deltaTime = (Time.time - delta);
+        //swipe detection, a swipe covers a long distance
         Vector3 contactVector = firstPos - collisionPoint;
-
-        //check if hand-tracking is enabled:
-        //if (InputDeviceCharacteristics.) { 
-        //}
+        //the swipe sensitivity seems to be dependent on the device used. Why? I don't know
         float swipeSens = 0;
-        //kid named finger
+        //the collider was a finger
         if(other.name.Equals("Capsule Collider Proximal"))
         {
             swipeSens = 1f;
@@ -170,35 +167,39 @@ void GeoToTile(double lat, double lon, int zoom, out int tileX, out int tileY)
         {
             swipeSens = 2f;
         }
+        //poke
         if (contactVector.magnitude <= swipeSens)
         {
+            //get the world coordinates of the four corner points
             GeoToTile(lat, lon, zoom, out int x, out int y);
-
             float lonBottomLeft = tileToLon(x, zoom);
             float latBottomLeft = tileToLat(y + 1, zoom);
             float lonTopRight = tileToLon(x + 1, zoom);
             float latTopRight = tileToLat(y, zoom);
+            //get touch as vector
             Vector3 corner =  new Vector3(-5f, -0f, -5f);
             //account for rotation gameObject.transform.position -
             Vector3 touch = new Vector3(10,0,10) - (collisionPoint - corner);
             float latStep = latTopRight - latBottomLeft;
             float lonStep = lonTopRight - lonBottomLeft;
+            //linear interpolation between the corners, dependent on the touch vector
             float resLat = ((touch.z / 10f) + offsetY) * latStep + latBottomLeft;
             float resLon = ((touch.x / 10f) + offsetX) * lonStep + lonBottomLeft;
+            //send to weatherGetter
             WeatherGetter.updateLocation(resLat, resLon);
             //hide on click
             gameObject.SetActive(false);
 
             
         }
+        //swipe
         else
         {
-            Debug.Log(contactVector.magnitude);
             velocity =  new Vector2(contactVector.x, contactVector.z) * -swipeVelocity/deltaTime;
         }
         
     }
-
+    //zoom in or out
     public void changeZoom(int step)
     {
         if (step == 1)
@@ -206,7 +207,7 @@ void GeoToTile(double lat, double lon, int zoom, out int tileX, out int tileY)
             zoomOffset = 2f;
         }
         else zoomOffset = 0.5f;
-        //recenter
+        //recenter, same as in OnTriggerExit
         GeoToTile(lat, lon, zoom, out int x, out int y);
         float lonBottomLeft = tileToLon(x, zoom);
         float latBottomLeft = tileToLat(y + 1, zoom);

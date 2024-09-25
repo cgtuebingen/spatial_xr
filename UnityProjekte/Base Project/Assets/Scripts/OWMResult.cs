@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-// Root myDeserializedClass = JsonConvert.DeserializeObject<Root>(myJsonResponse);
+//auto generated, for parsing JSON
     public class Clouds
     {
         public int all ;

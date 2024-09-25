@@ -9,11 +9,6 @@ public class ZoomInteractionController : MonoBehaviour
     public int zoomEffectVal;
 
     private float coolDown = 0.0f;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -22,7 +17,6 @@ public class ZoomInteractionController : MonoBehaviour
         //does not look good anymore
         if (map.zoom <= 3 || map.zoom >= 18) return;
         map.changeZoom(zoomEffectVal);
-        //map.UpdateTile(map.lat,map.lon, map.zoom+zoomEffectMagnitude);
     }
 }
 

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-
+//Controller for the UI
 public class exampleUIText : MonoBehaviour
 {
     public WeatherGetter weatherGetter;
@@ -29,16 +29,19 @@ public class exampleUIText : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //empty start
         disableAllVisualizations();
     }
 
     // Update is called once per frame
     void Update()
     {
+        //get the weather
         WeatherGetter.Result<WeatherResult>? weather = weatherGetter.getWeather();
         if (weather is WeatherGetter.Result<WeatherResult> weatherRes) {
             if(!weatherRes.isOk){
                 cityText.text = "Fehler ...";
+                //this means the date is outside of the allowed range
                 if (weatherGetter.errorString == "HTTP/1.1 400 Bad Request")
                 {
                     cityText.text = "invalid date";
@@ -47,6 +50,7 @@ public class exampleUIText : MonoBehaviour
                 friendlyNameText.text = "";
                 activateVisualizationObject(null);
             }
+            //activate the right visualization
             else{
                 activateVisualizationObject(weatherRes.value.weatherType);
                 temperatureText.text = weatherRes.value.temp.ToString("0.0") + " °C";
@@ -62,6 +66,7 @@ public class exampleUIText : MonoBehaviour
 
     }
 
+    //now with english strings
     string weatherToFriendlyString(WeatherResult.WeatherType weather){
         switch(weather){
             case WeatherResult.WeatherType.RAIN:
@@ -91,6 +96,7 @@ public class exampleUIText : MonoBehaviour
         thunderstormVisualization.SetActive(false);
     }
 
+    //bad code: emergency fix
     void activateVisualizationObject(WeatherResult.WeatherType? weather)
     {
         if (weather is null)

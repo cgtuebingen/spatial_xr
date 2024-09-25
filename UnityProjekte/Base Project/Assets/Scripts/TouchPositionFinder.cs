@@ -2,14 +2,17 @@ using UnityEngine;
 
 public class TouchPositionFinder : MonoBehaviour
 {
+    //instead of rotating the globe
     public float correction = 180.0f;
     public WeatherGetter weatherGetter;
     public OSMRequest zoomMap;
     public float coolDown = 0.0f;
     private void OnTriggerEnter(Collider other)
     {
-        zoomMap.gameObject.SetActive(true);
         if(coolDown + 1.0f > Time.time) return;
+        //show the map
+        zoomMap.gameObject.SetActive(true);
+        //reset cooldown
         coolDown = Time.time;
         Vector3 collisionPoint = other.ClosestPoint(transform.position);
         Vector3 touchVector = (collisionPoint - gameObject.transform.position).normalized;

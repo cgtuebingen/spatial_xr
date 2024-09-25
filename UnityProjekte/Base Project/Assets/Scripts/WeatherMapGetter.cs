@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Networking;
+//this loads the requested tile from OpenStreetMap
 public class WeatherMapGetter : MonoBehaviour
 {
     private Material material;
@@ -14,6 +15,7 @@ public class WeatherMapGetter : MonoBehaviour
     private Texture2DArray textures;
     void Start()
     {
+        //initialize textures and material
         textures = new Texture2DArray(256, 256, (int)Math.Pow(4, zoomLevel), TextureFormat.ARGB32, true);
         material = GetComponent<Renderer>().material;
         for (int x = 0; x < (int)Math.Pow(2, zoomLevel); x++)
@@ -23,9 +25,11 @@ public class WeatherMapGetter : MonoBehaviour
                 StartCoroutine(GetText(layer, x, y, zoomLevel));
             }
         }
+        //write attributes to shader
         material.SetTexture("_TexList", textures);
         material.SetInteger("_ZoomLevel",zoomLevel);
     }
+    //request tile from OSM
     IEnumerator GetText(string layer, int x, int y, int z)
     {
         string url = baseURl + layer + "/"+z+"/"+x+"/"+y+".png?appid=" + apiKey;

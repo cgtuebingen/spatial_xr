@@ -6,6 +6,7 @@ public class OWMWeather : WeatherResult
 {
     public OWMWeather(double temp, int id, string city):base(temp - 273.15,parseWeatherFromID(id),city) {
     }    
+    //parse the weather code
    //Based on: https://openweathermap.org/weather-conditions
     public static WeatherResult.WeatherType parseWeatherFromID(int id){
         int firstDigit = id/100;

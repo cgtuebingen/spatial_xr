@@ -1,12 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+//Open Meteo specific weatherResult
 public class OpenMeteoWeather : WeatherResult
 {
 
     public OpenMeteoWeather(double temp, int id, string city):base(temp,parseWeatherFromID(id),city) {
     }    
+    //parse weather ID
     public static WeatherResult.WeatherType parseWeatherFromID(int id){
         switch (id){
             case 0:

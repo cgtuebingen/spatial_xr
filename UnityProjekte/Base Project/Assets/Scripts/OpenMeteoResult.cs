@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 [System.Serializable]
+//auto generated, for parsing JSON
     public class Hourly
     {
         public List<string> time;
