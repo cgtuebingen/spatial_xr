@@ -1,6 +1,6 @@
 # Weather Globe <i>for Extended Virtual Reality with the Quest Series</i>
 
-[![Watch the video](https://img.youtube.com/vi/WWwvqUnk050/maxresdefault.jpg)](https://youtu.be/WWwvqUnk050)
+[![Watch the video](https://img.youtube.com/vi/WWwvqUnk050/maxresdefault/0.jpg)](https://youtu.be/WWwvqUnk050)
 
 ## Description:
 
