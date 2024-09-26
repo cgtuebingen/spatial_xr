@@ -27,6 +27,7 @@ Say goodbye to flat, uninspiring weather apps and embrace a new era of immersive
 - **Hardware**: Any headset from the Quest Series
 - **API Key**: Your own API Key for [OpenWeatherMap](https://openweathermap.org/)
 
+An APK with the current Release is available. We recommend [Sidequest](https://sidequestvr.com/) for sideloading.
 For detailed installation instructions, please visit our [Wiki](https://github.com/cgtuebingen/spatial_xr/wiki).
 
 ## About 
