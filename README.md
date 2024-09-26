@@ -1,6 +1,6 @@
 # Weather Globe <i>for Extended Virtual Reality with the Quest Series</i>
 
-![Weather Globe Image](https://github.com/cgtuebingen/spatial_xr/assets/144686557/425f31b3-a103-4c77-968d-558d22b2aa11)
+[![Watch the video](https://img.youtube.com/vi/WWwvqUnk050/maxresdefault.jpg)](https://youtu.be/WWwvqUnk050)
 
 ## Description:
 
