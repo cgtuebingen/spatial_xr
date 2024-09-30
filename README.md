@@ -1,6 +1,8 @@
 # Weather Globe <i>for Extended Virtual Reality with the Quest Series</i>
 
-[![Watch the video](https://img.youtube.com/vi/WWwvqUnk050/maxresdefault.jpg)](https://youtu.be/WWwvqUnk050)
+https://github.com/user-attachments/assets/36a78334-ed01-431e-9ea3-f6ccef0d5057
+
+[![Also on YouTube](https://img.youtube.com/vi/WWwvqUnk050/maxresdefault.jpg)](https://youtu.be/WWwvqUnk050)
 
 ## Description:
 
@@ -33,6 +35,9 @@ For detailed installation instructions, please visit our [Wiki](https://github.c
 ## About 
 
 This project was developed as a team project at Eberhard Karls University Tübingen under the supervision of Jan-Niklas Dihlmann at the Computer Graphics Chair. We would like to thank Jan-Niklas for providing guidance, help, and a Meta Quest 3 for development, as well as all our participants. Working on this project was a journey filled with both challenges and joys. We are grateful for the opportunity to collaborate, explore the immersive possibilities of virtual reality, and bring our vision to life.
+
+
+
 
 
 
