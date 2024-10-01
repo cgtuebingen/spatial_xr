@@ -33,7 +33,7 @@ Say goodbye to flat, uninspiring weather apps and embrace a new era of immersive
 - **API Key**: Your own API Key for [OpenWeatherMap](https://openweathermap.org/)
 
 An APK with the current Release is available. We recommend [Sidequest](https://sidequestvr.com/) for sideloading.
-For detailed installation instructions, please visit our [Wiki](https://github.com/cgtuebingen/spatial_xr/wiki).
+For detailed installation instructions, please visit the installation page in our [Wiki](https://github.com/cgtuebingen/spatial_xr/wiki/How-to-install-the-App%3F).
 
 ## About 
 
