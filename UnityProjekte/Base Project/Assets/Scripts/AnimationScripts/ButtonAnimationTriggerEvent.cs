@@ -4,11 +4,15 @@ using UnityEngine;
 
 public class ButtonAnimationTriggerEvent : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    
+    //Animators on the Objects:
+    private Animator rButton;
+    private Animator lButton;
+
+    //Colliders triggering the Animations:
+    private Collider rTriggerCollider;
+    private Collider lTriggerCollider;
+    
 
     // Update is called once per frame
     void Update()
