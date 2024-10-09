@@ -9029,6 +9029,7 @@ GameObject:
   - component: {fileID: 2105734740265145491}
   - component: {fileID: 2105734740265145493}
   - component: {fileID: 2105734740265145492}
+  - component: {fileID: 2105734740265145494}
   m_Layer: 0
   m_Name: RightButton
   m_TagString: Untagged
@@ -10864,6 +10865,27 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.026998643, y: 0.020000001, z: 0.027675888}
   m_Center: {x: 0.00045059578, y: 8.632345e-18, z: -0.0038380306}
+--- !u!95 &2105734740265145494
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1668351813674007501}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 57e702708a63f0649803815af95041f2, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &2117202114910179930
 GameObject:
   m_ObjectHideFlags: 0
@@ -23081,6 +23103,7 @@ GameObject:
   - component: {fileID: 6898477469367979808}
   - component: {fileID: 6898477469367979807}
   - component: {fileID: 6898477469367979806}
+  - component: {fileID: 6898477469367979809}
   m_Layer: 0
   m_Name: LeftButton
   m_TagString: Untagged
@@ -23149,6 +23172,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   toRotate: {fileID: 919132148237679197}
+--- !u!95 &6898477469367979809
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6898477469367979805}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: b5d6e92702fe73c479a217b418903d0e, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &6923620866155314178
 GameObject:
   m_ObjectHideFlags: 0
